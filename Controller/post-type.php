@@ -54,10 +54,10 @@ abstract class Post_Type
 	public $rest_fields = array();
 
 	/**
-     * Constructor of the class.
-     *
-     * @return null
-     */
+	 * Constructor of the class.
+	 *
+	 * @return null
+	 */
 	public function __construct( $activate = false )
 	{
 		if ( $activate ) :
@@ -77,7 +77,7 @@ abstract class Post_Type
 
 	public function set_hooks_fields()
 	{
-		add_action( 'admin_init', array( &$this, 'register_meta_boxes' ) );
+		add_action( 'carbon_register_fields', array( &$this, 'register_meta_boxes' ) );
 		add_action( 'rest_api_init', array( &$this, 'rest_register_fields' ) );
 	}
 
@@ -109,8 +109,9 @@ abstract class Post_Type
 
 	public function set_hooks_for_columns()
 	{
-		if ( ! $this->get_columns() )
+		if ( ! $this->get_columns() ) {
 			return;
+		}
 
 		add_filter( "manage_{$this->name}_posts_columns", array( &$this, 'list_head_columns' ) );
 		add_action( "manage_{$this->name}_posts_custom_column", array( &$this, 'list_content_columns' ), 10, 2 );
@@ -118,8 +119,9 @@ abstract class Post_Type
 
 	public function set_hooks_for_register()
 	{
-		if ( ! $this->is_register )
+		if ( ! $this->is_register ) {
 			return;
+		}
 
 		add_action( 'init', array( &$this, 'register_post_type' ) );
 		add_filter( 'post_updated_messages', array( &$this, 'set_post_updated_messages' ) );
@@ -165,16 +167,17 @@ abstract class Post_Type
 	{
 		$columns = $this->get_columns();
 
-		if ( is_object( $this->model ) )
+		if ( is_object( $this->model ) ) {
 			$this->model->ID = $post_id;
+		}
 
 		// This action is to generalize the columns content, to use in similar cases
 		do_action( "apiki_{$this->name}_column", $post_id, $column_name );
 
 		// This actions is specific to a column
-		if ( isset( $columns[$column_name] ) ) :
+		if ( isset( $columns[ $column_name ] ) ) {
 			do_action( "apiki_{$this->name}_column_{$column_name}", $post_id );
-		endif;
+		}
 	}
 
 	/**
@@ -194,8 +197,9 @@ abstract class Post_Type
 	 */
 	public function register_post_type()
 	{
-		if ( ! $this->is_register )
+		if ( ! $this->is_register ) {
 			return;
+		}
 
 		register_post_type( $this->name, $this->get_args_register_post_type() );
 	}
