@@ -24,7 +24,7 @@ class Core
 	public function __construct()
 	{
 		// Generic hooks
-		add_action( 'plugins_loaded', array( 'Apiki\API\App', 'load_textdomain' ) );
+		add_action( 'plugins_loaded', array( 'GB\API\App', 'load_textdomain' ) );
 		add_filter( 'enter_title_here', array( &$this, 'enter_placeholder_title' ), 10, 2 );
 		add_action( 'admin_enqueue_scripts', array( &$this, 'scripts_admin' ) );
 		add_action( 'admin_enqueue_scripts', array( &$this, 'styles_admin' ) );

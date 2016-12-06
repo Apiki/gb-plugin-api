@@ -15,7 +15,7 @@ class Loader
 	 * @since 1.1
 	 * @var string
 	 */
-	public $namespace = 'Apiki\API';
+	public $namespace = 'GB\API';
 
 	/**
 	 * Pages Enqueue Media
