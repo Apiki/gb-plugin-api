@@ -2,7 +2,6 @@
 
 namespace GB\API;
 
-// Avoid that files are directly loaded
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
@@ -147,7 +146,7 @@ abstract class Comment
 	 */
 	public function __construct( $comment = false )
 	{
-		if ( false != $comment ) {
+		if ( false !== $comment ) {
 			$this->_populate_fields( $comment );
 		}
 	}

@@ -2,7 +2,6 @@
 
 namespace GB\API;
 
-// Avoid that files are directly loaded
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
@@ -144,18 +143,18 @@ class Post
 	const POST_TYPE = 'post';
 
 	/**
-     * Constructor of the class. Instantiate and incializate it.
-     *
-     * @since 1.0.0
-     *
-     * @param int $ID - The ID of the Customer
-     * @return null
-     */
-	public function __construct( $ID = false )
+	 * Constructor of the class. Instantiate and incializate it.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param int $ID - The ID of the Customer
+	 * @return null
+	 */
+	public function __construct( $id = false )
 	{
-		if ( false != $ID ) :
-			$this->ID = $ID;
-		endif;
+		if ( false !== $id ) {
+			$this->ID = $id;
+		}
 
 		$this->initialize();
 	}
@@ -169,26 +168,39 @@ class Post
 	{
 		$text = $this->__get( 'excerpt' );
 
-		if ( empty( $text ) )
+		if ( empty( $text ) ) {
 			$text = $this->__get( 'content' );
+		}
 
 		return apply_filters( 'the_excerpt', wp_trim_words( $text, $num_words, $more ) );
+	}
+
+	public function the_excerpt( $num_words = 55, $more = '...' )
+	{
+		echo $this->get_excerpt( $num_words, $more );
 	}
 
 	public function get_content( $num_words = false, $more = '...' )
 	{
 		$content = $this->__get( 'content' );
 
-		if ( ! $num_words )
+		if ( ! $num_words ) {
 			return apply_filters( 'the_content', $content );
+		}
 
 		return apply_filters( 'the_content', wp_trim_words( $content, $num_words, $more ) );
 	}
 
+	public function the_content( $num_words = false, $more = '...' )
+	{
+		echo $this->get_content( $num_words, $more );
+	}
+
 	public function get_model_parent( $is_empty_return_current = false )
 	{
-		if ( $is_empty_return_current && ! $this->has_parent() )
+		if ( $is_empty_return_current && ! $this->has_parent() ) {
 			return $this;
+		}
 
 		return new $this( $this->__get( 'parent' ) );
 	}
@@ -206,7 +218,7 @@ class Post
 
 	public function has_parent()
 	{
-		return (bool)$this->__get( 'parent' );
+		return (bool) $this->__get( 'parent' );
 	}
 
 	public function has_post_thumbnail()
@@ -219,6 +231,11 @@ class Post
 		return get_the_post_thumbnail( $this->ID, $size );
 	}
 
+	public function the_thumbnail( $size = 'thumbnail' )
+	{
+		echo $this->get_the_thumbnail( $size );
+	}
+
 	public function get_the_thumbnail_url( $size = 'thumbnail' )
 	{
 		return Utils::get_thumbnail_url( get_post_thumbnail_id( $this->ID ), $size );
@@ -227,6 +244,11 @@ class Post
 	public function get_permalink()
 	{
 		return get_permalink( $this->ID );
+	}
+
+	public function the_permalink()
+	{
+		echo esc_url( apply_filters( 'the_permalink', $this->get_permalink(), $this->ID ) );
 	}
 
 	public function find( $args = array() )
@@ -251,8 +273,9 @@ class Post
 
 		$query = Utils::get_query( $args, $defaults );
 
-		if ( ! $query->have_posts() )
+		if ( ! $query->have_posts() ) {
 			return false;
+		}
 
 		return $this->make_model( $query->posts[0] );
 	}
@@ -283,66 +306,61 @@ class Post
 			return $this->$prop_name;
 		endif;
 
-		if ( in_array( $prop_name, $this->prefix_post_fields ) ) :
+		if ( in_array( $prop_name, $this->prefix_post_fields, true ) ) {
 			$this->$prop_name = get_post_field( "post_{$prop_name}", $this->ID );
 			return $this->$prop_name;
-		endif;
+		}
 
-		if ( in_array( $prop_name, $this->literal_post_fields ) ) :
+		if ( in_array( $prop_name, $this->literal_post_fields, true ) ) {
 			$this->$prop_name = get_post_field( $prop_name, $this->ID );
 			return $this->$prop_name;
-		endif;
+		}
 
-		if ( array_key_exists( $prop_name, $this->metas ) ) :
+		if ( array_key_exists( $prop_name, $this->metas ) ) {
 			$this->$prop_name = $this->get_meta_value( $prop_name );
 			return $this->$prop_name;
-		endif;
+		}
 
 		return $this->get_property( $prop_name );
 	}
 
 	public function get_meta_value( $meta_key )
 	{
-		$args     = wp_parse_args( $this->metas[$meta_key], array( 'single' => true ) );
-		$meta_key = $this::POST_TYPE . '-' . $meta_key;
-		$value    = get_post_meta( $this->ID, $meta_key, $args['single'] );
+		$args  = $this->metas[ $meta_key ];
+		$value = carbon_get_post_meta( $this->ID, $meta_key, @$args['type'] );
 
-		if ( isset( $args['default'] ) && empty( $value ) )
-			return $args['default'];
+		if ( ! $value ) {
+			return @$args['default'];
+		}
 
-		if ( isset( $args['sanitize'] ) && is_callable( $args['sanitize'] ) )
+		if ( @$args['sanitize'] && is_callable( $args['sanitize'] ) ) {
 			return call_user_func( $args['sanitize'], $value );
+		}
 
 		return $value;
 	}
 
-	public function get_meta_name( $meta_key )
-	{
-		if ( ! array_key_exists( $meta_key, $this->metas ) )
-			throw new Exception( 'the meta_key passed is not defined', 100 );
-
-		return $this::POST_TYPE . '-' . $meta_key;
-	}
-
 	public function update_meta( $meta_key, $value )
 	{
-		if ( ! isset( $this->ID ) )
+		if ( ! isset( $this->ID ) ) {
 			return false;
+		}
 
-		update_post_meta( $this->ID, $this->get_meta_name( $meta_key ), $value );
+		update_post_meta( $this->ID, $meta_key, $value );
 	}
 
 	public function parse( $wp_query )
 	{
-		if ( ! $wp_query->have_posts() )
+		if ( ! $wp_query->have_posts() ) {
 			return false;
+		}
 
-		foreach ( $wp_query->posts as $post ) :
+		foreach ( $wp_query->posts as $post ) {
 			$model  = $this->make_model( $post );
 			$list[] = $model;
 
 			unset( $model );
-		endforeach;
+		}
 
 		$std           = new stdClass();
 		$std->list     = $list;
@@ -353,8 +371,9 @@ class Post
 
 	protected function make_model( $post )
 	{
-		if ( is_object( $post ) )
+		if ( is_object( $post ) ) {
 			return new $this( $post->ID );
+		}
 
 		return new $this( $post );
 	}

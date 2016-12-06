@@ -10,7 +10,7 @@ class Factory
 {
 	public static function create( $ids, $model_name, $table = false )
 	{
-		$model_name = "\\" . $model_name;
+		$model_name = '\\' . $model_name;
 		$instances  = array();
 
 		foreach ( $ids as $id ) {
@@ -32,9 +32,14 @@ class Factory
 			'users'    => 'ID',
 			'posts'    => 'ID',
 			'terms'    => 'term_id',
-			'comments' => 'comment_ID'
+			'comments' => 'comment_ID',
 		);
 
-		return (bool)$wpdb->get_var( $wpdb->prepare( "SELECT COUNT(*) FROM {$wpdb->$table} WHERE {$exists[ $table ]} = %d", $id ) );
+		return (bool) $wpdb->get_var(
+			$wpdb->prepare(
+				"SELECT COUNT(*) FROM {$wpdb->$table} WHERE {$exists[ $table ]} = %d",
+				$id
+			)
+		);
 	}
 }

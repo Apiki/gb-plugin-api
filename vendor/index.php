@@ -1,10 +1,5 @@
 <?php
-/**
- * Vendor Index Include
- *
- * @package GB WP API
- * @subpackage Vendor
- */
+
 namespace GB\API;
 
 // Avoid that files are directly loaded

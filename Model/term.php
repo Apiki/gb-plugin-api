@@ -2,7 +2,6 @@
 
 namespace GB\API;
 
-// Avoid that files are directly loaded
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
@@ -104,14 +103,14 @@ class Term
 		'taxonomy',
 		'description',
 		'parent',
-		'count'
+		'count',
 	);
 
 	public function __construct( $term = false )
 	{
-		if ( false != $term ) :
+		if ( false !== $term ) {
 			$this->_populate_fields( $term );
-		endif;
+		}
 	}
 
 	public function get_permalink()
@@ -124,7 +123,7 @@ class Term
 		return $this->find(
 			array(
 				'parent'     => $this->term_id,
-				'hide_empty' => false
+				'hide_empty' => false,
 			)
 		);
 	}
@@ -134,7 +133,7 @@ class Term
 		return $this->find(
 			array(
 				'parent'     => $this->term_id,
-				'hide_empty' => false
+				'hide_empty' => false,
 			)
 		);
 	}
@@ -144,28 +143,28 @@ class Term
 		return $this->find(
 			array(
 				'child_of'   => $this->term_id,
-				'hide_empty' => false
+				'hide_empty' => false,
 			)
 		);
 	}
 
 	public function has_children()
 	{
-		return (bool)$this->get_children();
+		return (bool) $this->get_children();
 	}
 
 	public function has_child()
 	{
-		return (bool)$this->get_child();
+		return (bool) $this->get_child();
 	}
 
 	public function get_top_level_parent()
 	{
 		$parent = new $this( $this->term_id );
 
-		while ( $parent->__get( 'parent' ) ) :
+		while ( $parent->__get( 'parent' ) ) {
 			$parent = new $this( $parent->__get( 'parent' ) );
-		endwhile;
+		}
 
 		return $parent;
 	}
@@ -175,10 +174,10 @@ class Term
 		$parent = $this;
 		$depth  = 0;
 
-		while ( $parent->__get( 'parent' ) ) :
+		while ( $parent->__get( 'parent' ) ) {
 			$parent = new $this( $parent->__get( 'parent' ) );
 			$depth++;
-		endwhile;
+		}
 
 		return $depth;
 	}
@@ -186,21 +185,23 @@ class Term
 	public function get_depth_limit()
 	{
 		$args = array(
-			'child_of' => $this->term_id
+			'child_of' => $this->term_id,
 		);
 
 		$terms     = $this->find( $args );
 		$depth_max = 0;
 
-		if ( ! $terms )
+		if ( ! $terms ) {
 			return $depth_max;
+		}
 
-		foreach ( $terms->list as $term ) :
+		foreach ( $terms->list as $term ) {
 			$depth = $term->get_depth();
 
-			if ( $depth > $depth_max )
+			if ( $depth > $depth_max ) {
 				$depth_max = $depth;
-		endforeach;
+			}
+		}
 
 		return $depth_max;
 	}
@@ -209,26 +210,29 @@ class Term
 	{
 		$defaults = array();
 
-		if ( $post_id )
+		if ( $post_id ) {
 			return $this->parse( Utils::wp_get_post_terms( $post_id, $this::SLUG, $args, $defaults ) );
+		}
 
 		return $this->parse( Utils::get_terms( $this::SLUG, $args, $defaults ) );
 	}
 
 	public function parse( $terms )
 	{
-		if ( ! $terms )
+		if ( ! $terms ) {
 			return false;
+		}
 
-		if ( is_wp_error( $terms ) )
+		if ( is_wp_error( $terms ) ) {
 			return false;
+		}
 
-		foreach ( $terms as $term ) :
+		foreach ( $terms as $term ) {
 			$model  = new $this( $term );
 			$list[] = $model;
 
 			unset( $model );
-		endforeach;
+		}
 
 		$std        = new \stdClass();
 		$std->list  = $list;
@@ -244,52 +248,37 @@ class Term
 
 	public function __get( $prop_name )
 	{
-		if ( isset( $this->$prop_name ) )
+		if ( isset( $this->$prop_name ) ) {
 			return $this->$prop_name;
+		}
 
-		if ( in_array( $prop_name, $this->default_fields ) ) :
+		if ( in_array( $prop_name, $this->default_fields, true ) ) {
 			$this->$prop_name = get_term_field( $prop_name, $this->term_id, $this::SLUG, false );
 			return $this->$prop_name;
-		endif;
+		}
 
-		if ( array_key_exists( $prop_name, $this->metas ) ) :
+		if ( array_key_exists( $prop_name, $this->metas ) ) {
 			$this->$prop_name = $this->get_meta_value( $prop_name );
 			return $this->$prop_name;
-		endif;
+		}
 
 		return $this->get_property( $prop_name );
 	}
 
 	public function get_meta_value( $meta_key )
 	{
-		if ( ! function_exists( 'get_term_meta' ) )
-			return false;
+		$args  = $this->metas[ $meta_key ];
+		$value = carbon_get_term_meta( $this->term_id, $meta_key, $args['type'] );
 
-		$args     = $this->metas[$meta_key];
-		$meta_key = $this::SLUG . '-' . $meta_key;
-		$value    = get_term_meta( $this->term_id, $meta_key, true );
+		if ( ! $value ) {
+			return @$args['default'];
+		}
 
-		if ( isset( $args['default'] ) && empty( $value ) )
-			return $args['default'];
-
-		if ( isset( $args['sanitize'] ) && is_callable( $args['sanitize'] ) )
+		if ( @$args['sanitize'] && is_callable( $args['sanitize'] ) ) {
 			return call_user_func( $args['sanitize'], $value );
+		}
 
 		return $value;
-	}
-
-	/**
-	 * Get meta manager
-	 *
-	 * @since 1.0
-	 * @return void
-	 */
-	public function get_meta_name( $meta_key )
-	{
-		if ( ! array_key_exists( $meta_key, $this->metas ) )
-			throw new Exception( 'the term_meta_key passed is not defined', 100 );
-
-		return $this::SLUG . '-' . $meta_key;
 	}
 
 	/**
@@ -300,11 +289,7 @@ class Term
 	 */
 	public function update_meta( $meta_key, $value )
 	{
-		if ( ! function_exists( 'update_term_meta' ) ) {
-			return false;
-		}
-
-		update_term_meta( $this->term_id, $this->get_meta_name( $meta_key ), $value );
+		update_term_meta( $this->term_id, $meta_key, $value );
 	}
 
 	/**
@@ -315,11 +300,7 @@ class Term
 	 */
 	public function delete_meta( $meta_key )
 	{
-		if ( ! function_exists( 'delete_term_meta' ) ) {
-			return false;
-		}
-
-		delete_term_meta( $this->term_id, $this->get_meta_name( $meta_key ) );
+		delete_term_meta( $this->term_id, $meta_key );
 	}
 
 	public function term_exists( $name, $taxonomy = 'category' )
@@ -409,7 +390,7 @@ class Term
 			$term = get_term( $term, $this::SLUG );
 		}
 
-		foreach ( $this->default_fields as $prop_name ) :
+		foreach ( $this->default_fields as $prop_name ) {
 			if ( ! $term ) {
 				$this->$prop_name = false;
 				continue;
@@ -418,6 +399,6 @@ class Term
 			if ( isset( $term->$prop_name ) ) {
 				$this->$prop_name = $term->$prop_name;
 			}
-		endforeach;
+		}
 	}
 }
