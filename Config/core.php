@@ -105,27 +105,6 @@ class Core
 					'option_value(10) ASC',
 				),
 			),
-			$wpdb->prefix . 'rg_lead_detail' => array(
-				'lead_number_value' => array(
-					'field_number ASC',
-					'value ASC',
-				),
-				'lead_id_field_number' => array(
-					'lead_id ASC',
-					'form_id ASC',
-					'field_number ASC',
-					'value ASC',
-				),
-			),
-			$wpdb->prefix . 'rg_form' => array(
-				'is_trash' => array(
-					'is_trash ASC',
-				),
-				'active_trash' => array(
-					'is_active ASC',
-					'is_trash ASC',
-				),
-			),
 		);
 
 		foreach ( $indexes_data as $table => $indexes ) {
