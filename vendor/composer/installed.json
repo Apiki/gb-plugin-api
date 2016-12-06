@@ -1,0 +1,40 @@
+[
+    {
+        "name": "valendesigns/option-tree",
+        "version": "v2.6.0",
+        "version_normalized": "2.6.0.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/valendesigns/option-tree.git",
+            "reference": "1f65d8000e608a3e36cebb5a4071a88fde809907"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/valendesigns/option-tree/zipball/1f65d8000e608a3e36cebb5a4071a88fde809907",
+            "reference": "1f65d8000e608a3e36cebb5a4071a88fde809907",
+            "shasum": ""
+        },
+        "time": "2016-02-10 06:25:31",
+        "type": "library",
+        "installation-source": "dist",
+        "autoload": {
+            "files": [
+                "ot-loader.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "GPLv3"
+        ],
+        "authors": [
+            {
+                "name": "Derek Herman",
+                "email": "derek@valendesigns.com",
+                "homepage": "http://valendesigns.com",
+                "role": "Developer"
+            }
+        ],
+        "description": "Theme Options UI Builder for WordPress.",
+        "homepage": "https://github.com/valendesigns/option-tree"
+    }
+]

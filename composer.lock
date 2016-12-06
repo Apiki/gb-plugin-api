@@ -1,0 +1,54 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "This file is @generated automatically"
+    ],
+    "hash": "17426a003d5f13aa4605a711d2454390",
+    "packages": [
+        {
+            "name": "valendesigns/option-tree",
+            "version": "v2.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/valendesigns/option-tree.git",
+                "reference": "1f65d8000e608a3e36cebb5a4071a88fde809907"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/valendesigns/option-tree/zipball/1f65d8000e608a3e36cebb5a4071a88fde809907",
+                "reference": "1f65d8000e608a3e36cebb5a4071a88fde809907",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "ot-loader.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPLv3"
+            ],
+            "authors": [
+                {
+                    "name": "Derek Herman",
+                    "email": "derek@valendesigns.com",
+                    "homepage": "http://valendesigns.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Theme Options UI Builder for WordPress.",
+            "homepage": "https://github.com/valendesigns/option-tree",
+            "time": "2016-02-10 06:25:31"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "stable",
+    "stability-flags": [],
+    "prefer-stable": false,
+    "prefer-lowest": false,
+    "platform": [],
+    "platform-dev": []
+}

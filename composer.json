@@ -1,0 +1,5 @@
+{
+    "require": {
+        "valendesigns/option-tree": "^2.6"
+    }
+}

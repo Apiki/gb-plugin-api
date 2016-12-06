@@ -1,0 +1,198 @@
+# Copyright (C) 2016 Apiki WordPress
+# This file is distributed under the GPL2.
+msgid ""
+msgstr ""
+"Project-Id-Version: Apiki WP API 1.6.0\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/apiki-wp-api\n"
+"POT-Creation-Date: 2016-02-16 20:28:35+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"X-Generator: grunt-wp-i18n 0.4.9\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;__ngettext:1,2;_n:1,2;__ngettext_noop:1,2;_n_noop:1,2;_c;_nc:1,2;_x:1,"
+"2c;_ex:1,2c;_nx:4c,1,2;_nx_noop:4c,1,2;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+
+#: Controller/post-type.php:133
+msgid "Date"
+msgstr ""
+
+#: Controller/post-type.php:198 Controller/post-type.php:201
+msgid "%s updated."
+msgid_plural "%s updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Controller/post-type.php:199
+msgid "Custom field updated."
+msgstr ""
+
+#: Controller/post-type.php:200
+msgid "Custom field deleted."
+msgstr ""
+
+#: Controller/post-type.php:202
+msgid "%s restored to revision from %s"
+msgid_plural "%s restored to revision from %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Controller/post-type.php:203
+msgid "%s published."
+msgid_plural "%s published."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Controller/post-type.php:204
+msgid "%s saved."
+msgid_plural "%s saved."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Controller/post-type.php:205
+msgid "%s submited."
+msgid_plural "%s submited."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Controller/post-type.php:206
+msgid "%s scheduled for: %s%s%s."
+msgid_plural "%s scheduled for: %s%s%s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Controller/post-type.php:207
+msgid "%s draft updated."
+msgid_plural "%s draft updated."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Controller/settings.php:26
+msgid "Gravity Forms: Form"
+msgstr ""
+
+#: Helper/l10n.php:29
+msgid "All %s"
+msgid_plural "All %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Helper/l10n.php:30
+msgid "Edit %s"
+msgstr ""
+
+#: Helper/l10n.php:31
+msgid "View %s"
+msgstr ""
+
+#: Helper/l10n.php:32
+msgid "Update %s"
+msgstr ""
+
+#: Helper/l10n.php:33
+msgid "Add New %s"
+msgid_plural "Add New %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Helper/l10n.php:34
+msgid "New %s Name"
+msgid_plural "New %s Name"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Helper/l10n.php:35
+msgid "Parent %s"
+msgstr ""
+
+#: Helper/l10n.php:36
+msgid "Parent %s:"
+msgstr ""
+
+#: Helper/l10n.php:37
+msgid "Search %s"
+msgstr ""
+
+#: Helper/l10n.php:38
+msgid "Popular %s"
+msgstr ""
+
+#: Helper/l10n.php:39
+msgid "Separate %s with commas"
+msgstr ""
+
+#: Helper/l10n.php:40
+msgid "Add or remove %s"
+msgstr ""
+
+#: Helper/l10n.php:41
+msgid "Choose from the most used %s"
+msgid_plural "Choose from the most used %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Helper/l10n.php:42
+msgid "No %s found."
+msgid_plural "No %s found."
+msgstr[0] ""
+msgstr[1] ""
+
+#: Helper/l10n.php:43
+msgid "Add New"
+msgid_plural "Add New"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Helper/l10n.php:44
+msgid "New %s"
+msgid_plural "New %s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: Helper/l10n.php:45
+msgid "No %s found in Trash."
+msgid_plural "No %s found in Trash."
+msgstr[0] ""
+msgstr[1] ""
+
+#: View/settings.php:35
+msgid "There are no forms available."
+msgstr ""
+
+#: View/settings.php:40
+msgid "Please select a form"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "Apiki WP API"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://apiki.com.br/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Plugin to use the Apiki WP API. Keep plugin enabled to enjoy all its "
+"functionalities."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Apiki WordPress"
+msgstr ""
+
+#: Controller/post-type.php:206
+msgctxt "date of schedule"
+msgid "M j, Y @ G:i"
+msgstr ""
