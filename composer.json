@@ -1,5 +1,5 @@
 {
     "require": {
-        "valendesigns/option-tree": "^2.6"
+        "htmlburger/carbon-fields": "^1.4"
     }
 }

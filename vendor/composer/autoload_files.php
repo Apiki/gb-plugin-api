@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    $vendorDir . '/valendesigns/option-tree/ot-loader.php',
+    $vendorDir . '/htmlburger/carbon-fields/carbon-fields.php',
+    $vendorDir . '/htmlburger/carbon-fields/core/functions.php',
 );
