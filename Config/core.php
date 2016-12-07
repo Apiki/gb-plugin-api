@@ -13,6 +13,7 @@ App::uses( 'index', 'Controller' );
 App::uses( 'index', 'View' );
 App::uses( 'index', 'Model' );
 App::uses( 'index', 'Widget' );
+App::uses( 'loader', 'Config' );
 
 class Core
 {
