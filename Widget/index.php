@@ -7,4 +7,4 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-App::uses( 'implement-widget', 'Widget' );
+App::uses( 'Widget', 'implement-widget' );

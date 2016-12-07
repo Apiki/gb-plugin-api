@@ -7,8 +7,8 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-App::uses( 'factory', 'Model' );
-App::uses( 'post', 'Model' );
-App::uses( 'term', 'Model' );
-App::uses( 'user', 'Model' );
-App::uses( 'comment', 'Model' );
+App::uses( 'Model', 'factory' );
+App::uses( 'Model', 'post' );
+App::uses( 'Model', 'term' );
+App::uses( 'Model', 'user' );
+App::uses( 'Model', 'comment' );

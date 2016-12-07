@@ -7,13 +7,13 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-App::uses( 'index', 'vendor' );
-App::uses( 'index', 'Helper' );
-App::uses( 'index', 'Controller' );
-App::uses( 'index', 'View' );
-App::uses( 'index', 'Model' );
-App::uses( 'index', 'Widget' );
-App::uses( 'loader', 'Config' );
+App::uses( 'vendor' );
+App::uses( 'Helper' );
+App::uses( 'Controller' );
+App::uses( 'View' );
+App::uses( 'Model' );
+App::uses( 'Widget' );
+App::uses( 'Config', 'loader' );
 
 class Core
 {

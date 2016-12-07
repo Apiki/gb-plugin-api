@@ -7,6 +7,6 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-App::uses( 'autoload', 'vendor' );
-App::uses( 'metaboxes', 'vendor' );
-App::uses( 'images-intermediate', 'vendor' );
+App::uses( 'vendor', 'autoload' );
+App::uses( 'vendor', 'metaboxes' );
+App::uses( 'vendor', 'images-intermediate' );
