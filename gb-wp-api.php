@@ -21,7 +21,7 @@ class App
 {
 	const PLUGIN_SLUG = 'gb-wp-api';
 
-	public static function uses( $class_name, $location )
+	public static function uses( $location, $class_name = 'index' )
 	{
 		include "{$location}/{$class_name}.php";
 	}

@@ -7,6 +7,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-App::uses( 'post-type', 'Controller' );
-App::uses( 'taxonomy', 'Controller' );
-App::uses( 'widget', 'Controller' );
+App::uses( 'Controller', 'post-type' );
+App::uses( 'Controller', 'taxonomy' );
+App::uses( 'Controller', 'widget' );
+

@@ -7,7 +7,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-App::uses( 'utils', 'Helper' );
-App::uses( 'attachment', 'Helper' );
-App::uses( 'l10n', 'Helper' );
-App::uses( 'validation', 'Helper' );
+App::uses( 'Helper', 'utils' );
+App::uses( 'Helper', 'attachment' );
+App::uses( 'Helper', 'l10n' );
+App::uses( 'Helper', 'validation' );

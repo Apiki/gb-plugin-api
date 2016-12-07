@@ -60,9 +60,9 @@ abstract class Post_Type
 	 */
 	public function __construct( $activate = false )
 	{
-		if ( $activate ) :
+		if ( $activate ) {
 			return true;
-		endif;
+		}
 
 		$this->set_hooks_fields();
 		$this->set_hooks_for_register();
@@ -84,8 +84,8 @@ abstract class Post_Type
 	public function rest_register_fields()
 	{
 		foreach ( $this->rest_fields as $field ) {
-
-			register_rest_field( $this->name,
+			register_rest_field(
+				$this->name,
 				$field,
 				array(
 					'get_callback'    => array( &$this, 'get_rest_fields_contents' ),
@@ -93,7 +93,6 @@ abstract class Post_Type
 					'schema'          => null,
 				)
 			);
-
 		}
 	}
 
