@@ -199,7 +199,13 @@ abstract class Post_Type
 			return;
 		}
 
-		register_post_type( $this->name, $this->get_args_register_post_type() );
+		$defaults = array(
+			'labels'        => $this->get_labels(),
+			'public'        => true,
+			'menu_position' => 5,
+		);
+
+		register_post_type( $this->name, wp_parse_args( $defaults, $this->get_args_register_post_type() ) );
 	}
 
 	/**
@@ -276,10 +282,6 @@ abstract class Post_Type
 
 	public function get_args_register_post_type()
 	{
-		return array(
-			'labels'        => $this->get_labels(),
-			'public'        => true,
-			'menu_position' => 5,
-		);
+		return array();
 	}
 }
