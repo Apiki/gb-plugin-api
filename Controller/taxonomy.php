@@ -10,7 +10,7 @@ if ( ! function_exists( 'add_action' ) ) {
 abstract class Taxonomy
 {
 	public $name;
-	public $labels          = array();
+	public $messages        = array();
 	public $object_type     = array( 'post' );
 	public $capability_type = 'term';
 	public $defaults        = array();
@@ -22,11 +22,22 @@ abstract class Taxonomy
 			return true;
 		endif;
 
+		$this->set_hooks_fields();
 		$this->set_hooks_for_register();
 		$this->initialize();
 	}
 
 	public function initialize()
+	{
+
+	}
+
+	public function set_hooks_fields()
+	{
+		add_action( 'carbon_register_fields', array( &$this, 'register_meta_boxes' ) );
+	}
+
+	public function register_meta_boxes()
 	{
 
 	}
@@ -67,7 +78,7 @@ abstract class Taxonomy
 			'plural'    => 'Taxonomias',
 		);
 
-		return wp_parse_args( $this->labels, $defaults );
+		return wp_parse_args( $this->messages, $defaults );
 	}
 
 	public function get_capabilities()
