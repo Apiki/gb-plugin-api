@@ -25,7 +25,7 @@ class L10n
 			'edit_item'                  => sprintf( __( 'Edit %s', App::PLUGIN_SLUG ), $label ),
 			'view_item'                  => sprintf( __( 'View %s', App::PLUGIN_SLUG ), $label ),
 			'update_item'                => sprintf( __( 'Update %s', App::PLUGIN_SLUG ), $label ),
-			'add_new_item'               => sprintf( _n( 'Add New %s', 'Add New %s', $is_female, App::PLUGIN_SLUG ), $label ),
+			'add_new_item'               => sprintf( _n( 'Add New %s', 'Add New %s', $is_female, App::PLUGIN_SLUG ), $label_lower ),
 			'new_item_name'              => sprintf( _n( 'New %s Name', 'New %s Name', $is_female, App::PLUGIN_SLUG ), $label ),
 			'parent_item'                => sprintf( __( 'Parent %s', App::PLUGIN_SLUG ), $label ),
 			'parent_item_colon'          => sprintf( __( 'Parent %s:', App::PLUGIN_SLUG ), $label ),
