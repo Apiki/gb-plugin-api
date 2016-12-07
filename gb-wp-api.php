@@ -47,7 +47,7 @@ class App
 	}
 }
 
-App::uses( 'core', 'Config' );
+App::uses( 'Config', 'core' );
 
 $core = new Core();
 
