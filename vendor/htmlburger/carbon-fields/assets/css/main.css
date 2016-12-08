@@ -16,7 +16,7 @@
 }
 
 /* ------------------------------------------------------------ *\
-	Term Page Overrides	
+	Term Page Overrides
 \* ------------------------------------------------------------ */
 .carbon-fields.edit-tags-php #col-container,
 .carbon-fields.edit-tags-php #col-left { overflow: visible; }
@@ -387,7 +387,7 @@ body.comment-php #poststuff .postbox-container .inside { margin: 0; padding: 0; 
 .carbon-Complex-tabbed > .field-holder > .carbon-subcontainer > .carbon-empty-row[style*="none;"] + .groups-wrapper ~ .carbon-actions { display: none; }
 .carbon-Complex-tabbed > .field-holder > .carbon-subcontainer > .carbon-empty-row[style*="none;"] + .groups-wrapper > .group-tabs-nav-holder .carbon-actions { display: block; }
 
-.carbon-Complex.even > .field-holder > .carbon-subcontainer > .groups-wrapper > .group-tabs-nav-holder .active a { background: #fff; border-bottom-color: #fff; } 
+.carbon-Complex.even > .field-holder > .carbon-subcontainer > .groups-wrapper > .group-tabs-nav-holder .active a { background: #fff; border-bottom-color: #fff; }
 .carbon-Complex.even > .field-holder > .carbon-subcontainer > .groups-wrapper > .carbon-groups-holder > .carbon-row > .fields-container:after { background: #fff;  }
 
 /* Tabs Nav */
@@ -411,14 +411,14 @@ body.comment-php #poststuff .postbox-container .inside { margin: 0; padding: 0; 
 .group-tabs-nav-holder > .group-tabs-nav .group-handle:after { content: '.' '\a' '.' '\a' '.' '\a' '.'; white-space: pre; display: block; font-size: 14px; line-height: 0.3; }
 
 .group-tabs-nav-holder > .group-tabs-nav .active a { background: #f7f6f6; border-bottom-color: #f7f6f6; }
-.group-tabs-nav-holder > .group-tabs-nav .active .group-name:after { 
+.group-tabs-nav-holder > .group-tabs-nav .active .group-name:after {
 	background: -moz-linear-gradient(left,  rgba(247,246,246,0) 0%, rgba(247,246,246,0.01) 1%, rgba(247,246,246,1) 100%);
 	background: -webkit-linear-gradient(left,  rgba(247,246,246,0) 0%,rgba(247,246,246,0.01) 1%,rgba(247,246,246,1) 100%);
 	background: linear-gradient(to right,  rgba(247,246,246,0) 0%,rgba(247,246,246,0.01) 1%,rgba(247,246,246,1) 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#00ffffff', endColorstr='#ffffff',GradientType=1 );
 }
 
-.carbon-Complex-tabbed.even > .field-holder > .carbon-subcontainer > .groups-wrapper > .group-tabs-nav-holder > .group-tabs-nav .active .group-name:after { 
+.carbon-Complex-tabbed.even > .field-holder > .carbon-subcontainer > .groups-wrapper > .group-tabs-nav-holder > .group-tabs-nav .active .group-name:after {
 	background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.01) 1%, rgba(255,255,255,1) 100%);
 	background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.01) 1%,rgba(255,255,255,1) 100%);
 	background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.01) 1%,rgba(255,255,255,1) 100%);
@@ -454,7 +454,7 @@ body.comment-php #poststuff .postbox-container .inside { margin: 0; padding: 0; 
 .layout-tabbed-horizontal > .group-tabs-nav-holder.active { z-index: 200; }
 
 .layout-tabbed-horizontal > .group-tabs-nav-holder > .group-tabs-nav { width: 100%; margin-bottom: -1px; font-size: 0; display: -webkit-flex; display: flex; overflow: hidden; -webkit-flex-direction: row; flex-direction: row; -webkit-flex-wrap: nowrap; flex-wrap: nowrap; -webkit-justify-content: flex-start; justify-content: flex-start; -webkit-align-items: stretch; align-items: stretch; -webkit-align-content: stretch; align-content: stretch; }
-.layout-tabbed-horizontal > .group-tabs-nav-holder > .group-tabs-nav > li { display: inline-block; vertical-align: top; white-space: nowrap; overflow: hidden; margin-left: 2px; -webkit-order: 0; order: 0; -webkit-flex-grow: 0; flex-grow: 0; -webkit-flex-shrink: 1; flex-shrink: 1; -webkit-flex-basis: auto; flex-basis: auto; -webkit-align-self: auto; align-self: auto; }
+.layout-tabbed-horizontal > .group-tabs-nav-holder > .group-tabs-nav > li { display: inline-block; vertical-align: top; white-space: nowrap; overflow: hidden; margin-left: 2px; -webkit-order: 0; order: 0; -webkit-flex-grow: 0; flex-grow: 0; -webkit-flex-shrink: 1; flex-shrink: 1; -webkit-flex-basis: auto; flex-basis: auto; -webkit-align-self: auto; align-self: auto; line-height: 1.4; }
 .layout-tabbed-horizontal > .group-tabs-nav-holder > .group-tabs-nav a { padding-left: 6px; }
 .layout-tabbed-horizontal > .group-tabs-nav-holder > .group-tabs-nav > li:first-child { margin-left: 0; }
 
@@ -587,7 +587,7 @@ body.comment-php #poststuff .postbox-container .inside { margin: 0; padding: 0; 
 	.carbon-Complex-tabbed > .field-holder > .carbon-subcontainer > .groups-wrapper > .carbon-groups-holder > .carbon-group-row > .carbon-group-actions > .carbon-btn-collapse { display: inline-block; }
 
 	.carbon-Complex-tabbed .carbon-group-row .carbon-drag-handle .group-name { display: block; position: relative; overflow: hidden; max-width: 140px; min-width: 20px; min-height: 18px; margin-right: 80px; white-space: nowrap; }
-	.carbon-Complex-tabbed .carbon-group-row .carbon-drag-handle .group-name:after { content: ''; position: absolute; top: 0; right: 0; width: 10px; height: 100%; 
+	.carbon-Complex-tabbed .carbon-group-row .carbon-drag-handle .group-name:after { content: ''; position: absolute; top: 0; right: 0; width: 10px; height: 100%;
 		background: -moz-linear-gradient(left,  rgba(30,87,153,0) 0%, rgba(30,87,153,0.01) 1%, rgba(247,246,246,1) 100%);
 		background: -webkit-linear-gradient(left,  rgba(30,87,153,0) 0%,rgba(30,87,153,0.01) 1%,rgba(247,246,246,1) 100%);
 		background: linear-gradient(to right,  rgba(30,87,153,0) 0%,rgba(30,87,153,0.01) 1%,rgba(247,246,246,1) 100%);
@@ -597,7 +597,7 @@ body.comment-php #poststuff .postbox-container .inside { margin: 0; padding: 0; 
 	.layout-tabbed-vertical > .carbon-groups-holder:before,
 	.layout-tabbed-vertical > .carbon-groups-holder:after { content: none; }
 
-	.carbon-Complex.even > .field-holder > .carbon-subcontainer > .groups-wrapper > .carbon-groups-holder > .carbon-group-row > .carbon-drag-handle .group-name:after { 
+	.carbon-Complex.even > .field-holder > .carbon-subcontainer > .groups-wrapper > .carbon-groups-holder > .carbon-group-row > .carbon-drag-handle .group-name:after {
 		background: -moz-linear-gradient(left,  rgba(255,255,255,0) 0%, rgba(255,255,255,0.01) 1%, rgba(255,255,255,1) 100%);
 		background: -webkit-linear-gradient(left,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.01) 1%,rgba(255,255,255,1) 100%);
 		background: linear-gradient(to right,  rgba(255,255,255,0) 0%,rgba(255,255,255,0.01) 1%,rgba(255,255,255,1) 100%);
