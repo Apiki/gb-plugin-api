@@ -2,7 +2,6 @@
 
 namespace GB\API;
 
-// Avoid that files are directly loaded
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
@@ -10,4 +9,5 @@ if ( ! function_exists( 'add_action' ) ) {
 App::uses( 'Controller', 'post-type' );
 App::uses( 'Controller', 'taxonomy' );
 App::uses( 'Controller', 'widget' );
+App::uses( 'Controller', 'users' );
 
