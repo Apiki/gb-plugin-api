@@ -6,6 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    $vendorDir . '/htmlburger/carbon-fields/carbon-fields.php',
-    $vendorDir . '/htmlburger/carbon-fields/core/functions.php',
+    '74704c95e6224e3a13dba163dbbb87fa' => $vendorDir . '/htmlburger/carbon-fields/carbon-fields.php',
+    '1c3af1f7c867149c2eb8dfa733be2e98' => $vendorDir . '/htmlburger/carbon-fields/core/functions.php',
 );

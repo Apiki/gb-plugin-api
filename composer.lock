@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "fe2c08fa57df3aed87e394d7c9eb31ae",
+    "content-hash": "0c21d080fded188f7691fd9132161c62",
     "packages": [
         {
             "name": "htmlburger/carbon-fields",
@@ -108,7 +108,7 @@
             ],
             "description": "WordPress developer-friendly custom fields for post types, taxonomy terms, users, comments, widgets, options and more.",
             "homepage": "http://carbonfields.net/",
-            "time": "2016-10-20 11:11:55"
+            "time": "2016-10-20T11:11:55+00:00"
         }
     ],
     "packages-dev": [],
