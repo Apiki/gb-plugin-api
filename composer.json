@@ -1,5 +1,11 @@
 {
+    "type": "project",
     "require": {
-        "htmlburger/carbon-fields": "^1.4"
+        "htmlburger/carbon-fields": "dev-master"
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/{$vendor}/{$name}/": ["type:wordpress-plugin"]
+        }
     }
 }

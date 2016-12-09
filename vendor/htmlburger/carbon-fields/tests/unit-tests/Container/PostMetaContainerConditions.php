@@ -39,10 +39,28 @@ class PostMetaContainerConditions extends WP_UnitTestCase {
 	/**
 	 * @covers Carbon_Fields\Container\Post_Meta_Container::show_on_page
 	 */
+	public function testShowOnPageByIdResultPageId() {
+		$container = Container::make('post_meta', $this->containerTitle);
+		$container->show_on_page( $this->page->ID );
+		$this->assertSame( $this->page->ID, $container->settings['show_on']['page_id'] );
+	}
+
+	/**
+	 * @covers Carbon_Fields\Container\Post_Meta_Container::show_on_page
+	 */
 	public function testShowOnPageByPathResultPostType() {
 		$container = Container::make('post_meta', $this->containerTitle);
 		$container->show_on_page( $this->page->post_name );
 		$this->assertSame( array( 'page' ), $container->settings['post_type'] );
+	}
+
+	/**
+	 * @covers Carbon_Fields\Container\Post_Meta_Container::show_on_page
+	 */
+	public function testShowOnPageByPathResultPageId() {
+		$container = Container::make('post_meta', $this->containerTitle);
+		$container->show_on_page( $this->page->post_name );
+		$this->assertSame( $this->page->ID, $container->settings['show_on']['page_id'] );
 	}
 
 	/**
@@ -51,6 +69,7 @@ class PostMetaContainerConditions extends WP_UnitTestCase {
 	public function testShowOnTemplateStringResultPostType() {
 		$container = Container::make('post_meta', $this->containerTitle);
 		$container->show_on_template( 'default' );
+		$container->show_on_post_type( 'page' );
 		$this->assertSame( array( 'page' ), $container->settings['post_type'] );
 	}
 
@@ -60,6 +79,7 @@ class PostMetaContainerConditions extends WP_UnitTestCase {
 	public function testShowOnTemplateArrayResultPostType() {
 		$container = Container::make('post_meta', $this->containerTitle);
 		$container->show_on_template( array( 'default' ) );
+		$container->show_on_post_type( 'page' );
 		$this->assertSame( array( 'page' ), $container->settings['post_type'] );
 	}
 

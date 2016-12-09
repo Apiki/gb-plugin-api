@@ -416,8 +416,10 @@ class Post_Meta_Container extends Container {
 	 * @return object $this
 	 **/
 	public function show_on_page( $page ) {
-		if ( absint( $page ) == $page ) {
-			$page_obj = get_post( $page );
+		$page_id = absint( $page );
+
+		if ( $page_id && $page_id == $page ) {
+			$page_obj = get_post( $page_id );
 		} else {
 			$page_obj = get_page_by_path( $page );
 		}
@@ -454,8 +456,6 @@ class Post_Meta_Container extends Container {
 	 * @return object $this
 	 **/
 	public function show_on_template( $template_path ) {
-		$this->show_on_post_type( 'page' );
-
 		if ( is_array( $template_path ) ) {
 			foreach ( $template_path as $path ) {
 				$this->show_on_template( $path );
