@@ -6,16 +6,10 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-class Loader
-{
-	/**
-	 * Namespace
-	 *
-	 * @since 1.1
-	 * @var string
-	 */
-	public $namespace = 'GB\API';
+use ReflectionClass;
 
+abstract class Loader
+{
 	/**
 	 * Pages Enqueue Media
 	 *
@@ -32,6 +26,7 @@ class Loader
 	{
 		add_action( 'admin_enqueue_scripts', array( &$this, 'scripts_admin' ) );
 		add_action( 'admin_enqueue_scripts', array( &$this, 'styles_admin' ) );
+		add_action( 'init', array( &$this, 'load_textdomain' ) );
 
 		$this->initialize();
 	}
@@ -41,12 +36,23 @@ class Loader
 
 	}
 
+	public function load_textdomain()
+	{
+
+	}
+
 	public function load_controllers( $controllers, $activate = false )
 	{
+		$namespace = $this->get_namespace();
+
 		foreach ( $controllers as $name ) {
-			$class = sprintf( "{$this->namespace}\%s_Controller", $name );
-			$this->_handle_instance( $class, $activate );
+			$this->_handle_instance( sprintf( "{$namespace}\%s_Controller", $name ), $activate );
 		}
+	}
+
+	public function get_namespace()
+	{
+		return ( new ReflectionClass( $this ) )->getNamespaceName();
 	}
 
 	public function load_wp_media()

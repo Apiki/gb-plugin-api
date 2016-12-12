@@ -12,38 +12,43 @@
 */
 namespace GB\API;
 
-// Avoid that files are directly loaded
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
 class App
 {
-	const PLUGIN_SLUG = 'gb-wp-api';
+	const SLUG = 'gb-wp-api';
+	const PATH = 'gb-plugin-api';
 
 	public static function uses( $location, $class_name = 'index' )
 	{
-		include "{$location}/{$class_name}.php";
+		include self::plugin_dir() . "{$location}/{$class_name}.php";
 	}
 
 	public static function plugins_url( $path )
 	{
-		return plugins_url( $path, __FILE__ );
+		return self::plugin_url() . $path;
 	}
 
 	public static function plugin_dir_path( $path )
 	{
-		return plugin_dir_path( __FILE__ ) . $path;
+		return self::plugin_dir() . $path;
+	}
+
+	public static function plugin_dir()
+	{
+		return WP_PLUGIN_DIR . DIRECTORY_SEPARATOR . static::PATH . DIRECTORY_SEPARATOR;
+	}
+
+	public static function plugin_url()
+	{
+		return WP_PLUGIN_URL . '/' . static::PATH . '/';
 	}
 
 	public static function filemtime( $path )
 	{
 		return filemtime( self::plugin_dir_path( $path ) );
-	}
-
-	public static function load_textdomain()
-	{
-		load_plugin_textdomain( self::PLUGIN_SLUG, false, plugin_basename( dirname( __FILE__ ) ) . '/languages' );
 	}
 }
 

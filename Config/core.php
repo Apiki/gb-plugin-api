@@ -15,27 +15,11 @@ App::uses( 'Model' );
 App::uses( 'Widget' );
 App::uses( 'Config', 'loader' );
 
-class Core
+class Core extends Loader
 {
-	/**
-	 * Initialize the plugin by setting localization, filters, and administration functions.
-	 *
-	 * @since 1.0
-	 */
-	public function __construct()
+	public function load_textdomain()
 	{
-		// Generic hooks
-		add_action( 'plugins_loaded', array( 'GB\API\App', 'load_textdomain' ) );
-		add_filter( 'enter_title_here', array( &$this, 'enter_placeholder_title' ), 10, 2 );
-		add_action( 'admin_enqueue_scripts', array( &$this, 'scripts_admin' ) );
-		add_action( 'admin_enqueue_scripts', array( &$this, 'styles_admin' ) );
-
-		$this->initialize();
-	}
-
-	public function initialize()
-	{
-
+		load_plugin_textdomain( App::SLUG, false, App::PATH . '/languages' );
 	}
 
 	public function activate()
@@ -43,15 +27,10 @@ class Core
 		$this->_create_indexes();
 	}
 
-	public function enter_placeholder_title( $title, $post )
-	{
-		return apply_filters( "apiki_placeholder_title_{$post->post_type}", $title );
-	}
-
 	public function scripts_admin()
 	{
 		wp_register_script(
-			'admin-script-' . App::PLUGIN_SLUG,
+			'admin-script-' . App::SLUG,
 			App::plugins_url( '/assets/javascripts/built.js' ),
 			array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable' ),
 			App::filemtime( 'assets/javascripts/built.js' ),
@@ -59,7 +38,7 @@ class Core
 		);
 
 		wp_localize_script(
-			'admin-script-' . App::PLUGIN_SLUG,
+			'admin-script-' . App::SLUG,
 			'AdminGlobalVars',
 			array(
 				'urlAjax' => admin_url( 'admin-ajax.php' ),
@@ -70,7 +49,7 @@ class Core
 	public function styles_admin()
 	{
 		wp_enqueue_style(
-			'admin-css-' . App::PLUGIN_SLUG,
+			'admin-css-' . App::SLUG,
 			App::plugins_url( 'assets/stylesheets/style.css' ),
 			array(),
 			App::filemtime( 'assets/stylesheets/style.css' )

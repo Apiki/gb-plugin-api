@@ -149,7 +149,7 @@ abstract class Post_Type
 		unset( $heads['date'] );
 
 		$heads         = array_merge( $heads, $this->get_columns() );
-		$heads['date'] = __( 'Date', App::PLUGIN_SLUG );
+		$heads['date'] = __( 'Date', App::SLUG );
 
 		return $heads;
 	}
@@ -222,16 +222,16 @@ abstract class Post_Type
 
 		$messages[ $this->name ] = array(
 			0  => '',
-			1  => sprintf( _n( '%s updated.', "%s updated.", $is_female, App::PLUGIN_SLUG ), $label ),
-			2  => __( 'Custom field updated.', App::PLUGIN_SLUG ),
-			3  => __( 'Custom field deleted.', App::PLUGIN_SLUG ),
-			4  => sprintf( _n( '%s updated.', '%s updated.', $is_female, App::PLUGIN_SLUG ), $label ),
-			5  => isset( $_GET['revision'] ) ? sprintf( _n( '%s restored to revision from %s', '%s restored to revision from %s', $is_female, App::PLUGIN_SLUG ), $label, wp_post_revision_title( (int)$_GET['revision'], false ) ) : false,
-			6  => sprintf( _n( '%s published.', '%s published.', $is_female, App::PLUGIN_SLUG ), $label ),
-			7  => sprintf( _n( '%s saved.', '%s saved.', $is_female, App::PLUGIN_SLUG ), $label ),
-			8  => sprintf( _n( '%s submited.', '%s submited.', $is_female, App::PLUGIN_SLUG ), $label ),
-			9  => sprintf( _n( '%s scheduled for: %s%s%s.', '%s scheduled for: %s%s%s.', $is_female, App::PLUGIN_SLUG ), $label, '<strong>',  date_i18n( _x( 'M j, Y @ G:i', 'date of schedule', App::PLUGIN_SLUG ), strtotime( $post->post_date ) ), '</strong>' ),
-			10 => sprintf( _n( '%s draft updated.', '%s draft updated.', $is_female, App::PLUGIN_SLUG ), $label ),
+			1  => sprintf( _n( '%s updated.', "%s updated.", $is_female, App::SLUG ), $label ),
+			2  => __( 'Custom field updated.', App::SLUG ),
+			3  => __( 'Custom field deleted.', App::SLUG ),
+			4  => sprintf( _n( '%s updated.', '%s updated.', $is_female, App::SLUG ), $label ),
+			5  => isset( $_GET['revision'] ) ? sprintf( _n( '%s restored to revision from %s', '%s restored to revision from %s', $is_female, App::SLUG ), $label, wp_post_revision_title( (int)$_GET['revision'], false ) ) : false,
+			6  => sprintf( _n( '%s published.', '%s published.', $is_female, App::SLUG ), $label ),
+			7  => sprintf( _n( '%s saved.', '%s saved.', $is_female, App::SLUG ), $label ),
+			8  => sprintf( _n( '%s submited.', '%s submited.', $is_female, App::SLUG ), $label ),
+			9  => sprintf( _n( '%s scheduled for: %s%s%s.', '%s scheduled for: %s%s%s.', $is_female, App::SLUG ), $label, '<strong>',  date_i18n( _x( 'M j, Y @ G:i', 'date of schedule', App::SLUG ), strtotime( $post->post_date ) ), '</strong>' ),
+			10 => sprintf( _n( '%s draft updated.', '%s draft updated.', $is_female, App::SLUG ), $label ),
 		);
 
 		return $messages;
