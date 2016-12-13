@@ -95,8 +95,7 @@ abstract class Loader
 
 		if ( $activate ) {
 			$instance->add_capabilities( array( 'administrator', 'editor' ) );
+			unset( $instance );
 		}
-
-		unset( $instance );
 	}
 }
