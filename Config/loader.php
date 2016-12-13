@@ -80,13 +80,12 @@ abstract class Loader
 
 	private function _handle_instance( $class, $activate = false )
 	{
-		if ( ! $activate ) {
-			$instance = new $class();
-			return;
+		$instance = new $class( $activate );
+
+		if ( $activate ) {
+			$instance->add_capabilities( array( 'administrator', 'editor' ) );
 		}
 
-		$instance = new $class( true );
-		$instance->add_capabilities( array( 'administrator', 'editor' ) );
 		unset( $instance );
 	}
 }
