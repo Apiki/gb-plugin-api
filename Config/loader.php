@@ -22,11 +22,17 @@ abstract class Loader
 		'themes.php',
 	);
 
-	public function __construct()
+	protected static $root_file;
+
+	const SLUG = 'gb-plugin-api';
+
+	public function __construct( $file = false )
 	{
 		add_action( 'admin_enqueue_scripts', array( &$this, 'scripts_admin' ) );
 		add_action( 'admin_enqueue_scripts', array( &$this, 'styles_admin' ) );
 		add_action( 'init', array( &$this, 'load_textdomain' ) );
+
+		self::$root_file = $file;
 
 		$this->initialize();
 	}
@@ -46,7 +52,7 @@ abstract class Loader
 		$namespace = $this->get_namespace();
 
 		foreach ( $controllers as $name ) {
-			$this->_handle_instance( sprintf( "{$namespace}\%s_Controller", $name ), $activate );
+			$this->_handle_instance( sprintf( "{$namespace}\Controller\%s", $name ), $activate );
 		}
 	}
 
@@ -76,6 +82,11 @@ abstract class Loader
 	public function styles_admin()
 	{
 
+	}
+
+	public static function plugin_dir_path( $path )
+	{
+		return plugin_dir_path( self::$root_file ) . $path;
 	}
 
 	private function _handle_instance( $class, $activate = false )
