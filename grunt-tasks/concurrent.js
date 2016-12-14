@@ -3,6 +3,6 @@ module.exports = {
 		'jshint', 'concat', 'sass:dist', 'imagemin'
 	],
 	dev : [
-		'jshint', 'concat', 'sass:dev', 'handlebars:dist'
+		'jshint', 'concat', 'sass:dev', 'riot:dev'
 	]
 };

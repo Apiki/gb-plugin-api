@@ -18,7 +18,7 @@ class Core extends Loader
 		wp_register_script(
 			'admin-script-' . self::SLUG,
 			self::plugins_url( '/assets/javascripts/built.js' ),
-			array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable' ),
+			array( 'jquery' ),
 			self::filemtime( 'assets/javascripts/built.js' ),
 			true
 		);

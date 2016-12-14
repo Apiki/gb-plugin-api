@@ -6,6 +6,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
+use GB\API\Core;
 use GB\API\Helper\L10n;
 
 abstract class Post_Type

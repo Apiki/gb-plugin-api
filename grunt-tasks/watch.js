@@ -1,11 +1,11 @@
 module.exports =  {
 	styles : {
-		files : ['<%= paths.style %>/**/*.scss', 'ghost/**/*.scss'],
+		files : ['<%= paths.style %>/**/*.scss'],
 		tasks : ['sass:dev']
 	},
 	templates : {
-		files: ['handlebars/**/*.hbs'],
-		tasks: ['handlebars:dist']
+		files: ['riot/**/*.tag'],
+		tasks: ['riot:dev']
 	},
 	scripts : {
 		files : '<%= concat.dist.src %>',

@@ -12,6 +12,7 @@
     "grunt-contrib-sass": "^0.4.0",
     "grunt-contrib-uglify": "^0.5.1",
     "grunt-contrib-watch": "^0.6.1",
+    "grunt-riot": "^0.1.6",
     "grunt-wp-i18n": "~0.4.3",
     "load-grunt-configs": "~0.1.0",
     "load-grunt-tasks": "~0.2.0",
