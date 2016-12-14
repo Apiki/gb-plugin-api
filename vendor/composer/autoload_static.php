@@ -12,6 +12,10 @@ class ComposerStaticInit68fb45a19aa8795b966c5cbb6eb89405
     );
 
     public static $prefixLengthsPsr4 = array (
+        'G' => 
+        array (
+            'GB\\API\\' => 7,
+        ),
         'C' => 
         array (
             'Composer\\Installers\\' => 20,
@@ -20,6 +24,10 @@ class ComposerStaticInit68fb45a19aa8795b966c5cbb6eb89405
     );
 
     public static $prefixDirsPsr4 = array (
+        'GB\\API\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
+        ),
         'Composer\\Installers\\' => 
         array (
             0 => __DIR__ . '/..' . '/composer/installers/src/Composer/Installers',

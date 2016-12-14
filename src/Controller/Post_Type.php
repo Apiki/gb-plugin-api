@@ -1,10 +1,12 @@
 <?php
 
-namespace GB\API;
+namespace GB\API\Controller;
 
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
+
+use GB\API\Helper\L10n;
 
 abstract class Post_Type
 {
@@ -149,7 +151,7 @@ abstract class Post_Type
 		unset( $heads['date'] );
 
 		$heads         = array_merge( $heads, $this->get_columns() );
-		$heads['date'] = __( 'Date', App::SLUG );
+		$heads['date'] = __( 'Date', Core::SLUG );
 
 		return $heads;
 	}
@@ -222,16 +224,16 @@ abstract class Post_Type
 
 		$messages[ $this->name ] = array(
 			0  => '',
-			1  => sprintf( _n( '%s updated.', "%s updated.", $is_female, App::SLUG ), $label ),
-			2  => __( 'Custom field updated.', App::SLUG ),
-			3  => __( 'Custom field deleted.', App::SLUG ),
-			4  => sprintf( _n( '%s updated.', '%s updated.', $is_female, App::SLUG ), $label ),
-			5  => isset( $_GET['revision'] ) ? sprintf( _n( '%s restored to revision from %s', '%s restored to revision from %s', $is_female, App::SLUG ), $label, wp_post_revision_title( (int)$_GET['revision'], false ) ) : false,
-			6  => sprintf( _n( '%s published.', '%s published.', $is_female, App::SLUG ), $label ),
-			7  => sprintf( _n( '%s saved.', '%s saved.', $is_female, App::SLUG ), $label ),
-			8  => sprintf( _n( '%s submited.', '%s submited.', $is_female, App::SLUG ), $label ),
-			9  => sprintf( _n( '%s scheduled for: %s%s%s.', '%s scheduled for: %s%s%s.', $is_female, App::SLUG ), $label, '<strong>',  date_i18n( _x( 'M j, Y @ G:i', 'date of schedule', App::SLUG ), strtotime( $post->post_date ) ), '</strong>' ),
-			10 => sprintf( _n( '%s draft updated.', '%s draft updated.', $is_female, App::SLUG ), $label ),
+			1  => sprintf( _n( '%s updated.', '%s updated.', $is_female, Core::SLUG ), $label ),
+			2  => __( 'Custom field updated.', Core::SLUG ),
+			3  => __( 'Custom field deleted.', Core::SLUG ),
+			4  => sprintf( _n( '%s updated.', '%s updated.', $is_female, Core::SLUG ), $label ),
+			5  => isset( $_GET['revision'] ) ? sprintf( _n( '%s restored to revision from %s', '%s restored to revision from %s', $is_female, Core::SLUG ), $label, wp_post_revision_title( (int)$_GET['revision'], false ) ) : false,
+			6  => sprintf( _n( '%s published.', '%s published.', $is_female, Core::SLUG ), $label ),
+			7  => sprintf( _n( '%s saved.', '%s saved.', $is_female, Core::SLUG ), $label ),
+			8  => sprintf( _n( '%s submited.', '%s submited.', $is_female, Core::SLUG ), $label ),
+			9  => sprintf( _n( '%s scheduled for: %s%s%s.', '%s scheduled for: %s%s%s.', $is_female, Core::SLUG ), $label, '<strong>',  date_i18n( _x( 'M j, Y @ G:i', 'date of schedule', Core::SLUG ), strtotime( $post->post_date ) ), '</strong>' ),
+			10 => sprintf( _n( '%s draft updated.', '%s draft updated.', $is_female, Core::SLUG ), $label ),
 		);
 
 		return $messages;

@@ -2,26 +2,12 @@
 
 namespace GB\API;
 
-// Avoid that files are directly loaded
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-App::uses( 'vendor' );
-App::uses( 'Helper' );
-App::uses( 'Controller' );
-App::uses( 'View' );
-App::uses( 'Model' );
-App::uses( 'Widget' );
-App::uses( 'Config', 'loader' );
-
 class Core extends Loader
 {
-	public function load_textdomain()
-	{
-		load_plugin_textdomain( App::SLUG, false, App::PATH . '/languages' );
-	}
-
 	public function activate()
 	{
 		$this->_create_indexes();
@@ -30,15 +16,15 @@ class Core extends Loader
 	public function scripts_admin()
 	{
 		wp_register_script(
-			'admin-script-' . App::SLUG,
-			App::plugins_url( '/assets/javascripts/built.js' ),
+			'admin-script-' . self::SLUG,
+			self::plugins_url( '/assets/javascripts/built.js' ),
 			array( 'jquery', 'jquery-ui-datepicker', 'jquery-ui-sortable' ),
-			App::filemtime( 'assets/javascripts/built.js' ),
+			self::filemtime( 'assets/javascripts/built.js' ),
 			true
 		);
 
 		wp_localize_script(
-			'admin-script-' . App::SLUG,
+			'admin-script-' . self::SLUG,
 			'AdminGlobalVars',
 			array(
 				'urlAjax' => admin_url( 'admin-ajax.php' ),
@@ -49,10 +35,10 @@ class Core extends Loader
 	public function styles_admin()
 	{
 		wp_enqueue_style(
-			'admin-css-' . App::SLUG,
-			App::plugins_url( 'assets/stylesheets/style.css' ),
+			'admin-css-' . self::SLUG,
+			self::plugins_url( 'assets/stylesheets/style.css' ),
 			array(),
-			App::filemtime( 'assets/stylesheets/style.css' )
+			self::filemtime( 'assets/stylesheets/style.css' )
 		);
 	}
 

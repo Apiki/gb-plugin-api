@@ -1,8 +1,7 @@
 <?php
 
-namespace GB\API;
+namespace GB\API\Helper;
 
-// Avoid that files are directly loaded
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }

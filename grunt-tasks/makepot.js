@@ -3,7 +3,7 @@ module.exports = {
 		options: {
 			domainPath: '/languages',
 			type: 'wp-plugin',
-			exclude: ['Vendor/.*'],
+			exclude: ['vendor/.*'],
 			potHeaders : {
 				'language': 'en',
 				'plural-forms': 'nplurals=2; plural=(n != 1);',

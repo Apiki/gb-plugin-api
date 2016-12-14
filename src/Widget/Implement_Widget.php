@@ -1,6 +1,6 @@
 <?php
 
-namespace GB\API;
+namespace GB\API\Widget;
 
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );

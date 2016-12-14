@@ -1,10 +1,12 @@
 <?php
 
-namespace GB\API;
+namespace GB\API\Controller;
 
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
+
+use GB\API\Helper\L10n;
 
 abstract class Taxonomy
 {

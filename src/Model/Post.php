@@ -1,12 +1,11 @@
 <?php
 
-namespace GB\API;
+namespace GB\API\Model;
 
 if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-use Exception;
 use stdClass;
 
 class Post

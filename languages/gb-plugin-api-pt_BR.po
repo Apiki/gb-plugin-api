@@ -3,9 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Apiki WP API 1.6.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/apiki-wp-api\n"
-"POT-Creation-Date: 2016-02-16 20:28:35+00:00\n"
-"PO-Revision-Date: 2016-12-07 12:37-0300\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/gb-wp-api\n"
+"POT-Creation-Date: 2016-12-14 14:11:39+00:00\n"
+"PO-Revision-Date: 2016-12-14 12:13-0300\n"
 "Last-Translator: Elvis Henrique Pereira <elvishp2006@gmail.com>\n"
 "Language-Team: Elvis Henrique Pereira <elvis.pereira@apiki.com>\n"
 "Language: pt_BR\n"
@@ -21,177 +21,172 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: Controller/post-type.php:133
+#: src/Controller/Post_Type.php:154
 msgid "Date"
 msgstr "Data"
 
-#: Controller/post-type.php:198 Controller/post-type.php:201
+#: src/Controller/Post_Type.php:227 src/Controller/Post_Type.php:230
 msgid "%s updated."
 msgid_plural "%s updated."
 msgstr[0] "%s atualizada."
 msgstr[1] "%s atualizado."
 
-#: Controller/post-type.php:199
+#: src/Controller/Post_Type.php:228
 msgid "Custom field updated."
 msgstr "Campo customizado atualizado."
 
-#: Controller/post-type.php:200
+#: src/Controller/Post_Type.php:229
 msgid "Custom field deleted."
 msgstr "Campo customizado deletado."
 
-#: Controller/post-type.php:202
+#: src/Controller/Post_Type.php:231
 msgid "%s restored to revision from %s"
 msgid_plural "%s restored to revision from %s"
 msgstr[0] "%s restaurada para revisão de %s"
 msgstr[1] "%s restaurado para revisão de %s"
 
-#: Controller/post-type.php:203
+#: src/Controller/Post_Type.php:232
 msgid "%s published."
 msgid_plural "%s published."
 msgstr[0] "%s publicada."
 msgstr[1] "%s publicado."
 
-#: Controller/post-type.php:204
+#: src/Controller/Post_Type.php:233
 msgid "%s saved."
 msgid_plural "%s saved."
 msgstr[0] "%s salva."
 msgstr[1] "%s salvo."
 
-#: Controller/post-type.php:205
+#: src/Controller/Post_Type.php:234
 msgid "%s submited."
 msgid_plural "%s submited."
 msgstr[0] "%s submetida."
 msgstr[1] "%s submetido."
 
-#: Controller/post-type.php:206
+#: src/Controller/Post_Type.php:235
 msgid "%s scheduled for: %s%s%s."
 msgid_plural "%s scheduled for: %s%s%s."
 msgstr[0] "%s agendada para: %s%s%s."
 msgstr[1] "%s agendado para: %s%s%s."
 
-#: Controller/post-type.php:207
+#: src/Controller/Post_Type.php:236
 msgid "%s draft updated."
 msgid_plural "%s draft updated."
 msgstr[0] "Rascunho da %s atualizado."
 msgstr[1] "Rascunho do %s atualizado."
 
-#: Controller/settings.php:26
-msgid "Gravity Forms: Form"
-msgstr "Gravity Forms: Formulário"
-
-#: Helper/l10n.php:29
+#: src/Helper/L10n.php:25
 msgid "All %s"
 msgid_plural "All %s"
 msgstr[0] "Todas %s"
 msgstr[1] "Todos %s"
 
-#: Helper/l10n.php:30
+#: src/Helper/L10n.php:26
 msgid "Edit %s"
 msgstr "Editar %s"
 
-#: Helper/l10n.php:31
+#: src/Helper/L10n.php:27
 msgid "View %s"
 msgstr "Ver %s"
 
-#: Helper/l10n.php:32
+#: src/Helper/L10n.php:28
 msgid "Update %s"
 msgstr "Atualizar %s"
 
-#: Helper/l10n.php:33
+#: src/Helper/L10n.php:29
 msgid "Add New %s"
 msgid_plural "Add New %s"
 msgstr[0] "Adicionar nova %s"
 msgstr[1] "Adicionar novo %s"
 
-#: Helper/l10n.php:34
+#: src/Helper/L10n.php:30
 msgid "New %s Name"
 msgid_plural "New %s Name"
 msgstr[0] "Nome da Nova %s"
 msgstr[1] "Nome do Novo %s"
 
-#: Helper/l10n.php:35
+#: src/Helper/L10n.php:31
 msgid "Parent %s"
 msgstr "%s pai"
 
-#: Helper/l10n.php:36
+#: src/Helper/L10n.php:32
 msgid "Parent %s:"
 msgstr "%s pai:"
 
-#: Helper/l10n.php:37
+#: src/Helper/L10n.php:33
 msgid "Search %s"
 msgstr "Buscar %s"
 
-#: Helper/l10n.php:38
+#: src/Helper/L10n.php:34
 msgid "Popular %s"
 msgstr "%s populares"
 
-#: Helper/l10n.php:39
+#: src/Helper/L10n.php:35
 msgid "Separate %s with commas"
 msgstr "Separar %s com virgulas"
 
-#: Helper/l10n.php:40
+#: src/Helper/L10n.php:36
 msgid "Add or remove %s"
 msgstr "Adicionar ou remover %s"
 
-#: Helper/l10n.php:41
+#: src/Helper/L10n.php:37
 msgid "Choose from the most used %s"
 msgid_plural "Choose from the most used %s"
 msgstr[0] "Escolher entre as %s mais usadas"
 msgstr[1] "Escolher entre os %s mais usados"
 
-#: Helper/l10n.php:42
+#: src/Helper/L10n.php:38
 msgid "No %s found."
 msgid_plural "No %s found."
 msgstr[0] "Nenhuma %s encontrada."
 msgstr[1] "Nenhum %s encontrado."
 
-#: Helper/l10n.php:43
+#: src/Helper/L10n.php:39
 msgid "Add New"
 msgid_plural "Add New"
 msgstr[0] "Adicionar Nova"
 msgstr[1] "Adicionar Novo"
 
-#: Helper/l10n.php:44
+#: src/Helper/L10n.php:40
 msgid "New %s"
 msgid_plural "New %s"
 msgstr[0] "Nova %s"
 msgstr[1] "Novo %s"
 
-#: Helper/l10n.php:45
+#: src/Helper/L10n.php:41
 msgid "No %s found in Trash."
 msgid_plural "No %s found in Trash."
 msgstr[0] "Nenhuma %s encontrada na Lixeira."
 msgstr[1] "Nenhum %s encontrado na Lixeira."
 
-#: View/settings.php:35
-msgid "There are no forms available."
-msgstr "Não há formulários disponíveis."
-
-#: View/settings.php:40
-msgid "Please select a form"
-msgstr "Por favor selecione um formulário"
-
 #. Plugin Name of the plugin/theme
-msgid "Apiki WP API"
-msgstr "Apiki WP API"
+msgid "GB WP API"
+msgstr "GB WP API"
 
 #. Author URI of the plugin/theme
-msgid "http://apiki.com.br/"
-msgstr "http://apiki.com.br/"
+msgid "http://apiki.com.br"
+msgstr "http://apiki.com.br"
 
 #. Description of the plugin/theme
-msgid ""
-"Plugin to use the Apiki WP API. Keep plugin enabled to enjoy all its "
-"functionalities."
+msgid "Keep plugin enabled to enjoy all its functionalities."
 msgstr ""
-"Plugin para utilização do Apiki WP API. Mantenha o plugin ativado para "
+"Plugin para utilização do GB Plugin API. Mantenha o plugin ativado para "
 "desfrutar de todas suas funcionalidades"
 
 #. Author of the plugin/theme
 msgid "Apiki WordPress"
 msgstr "Apiki WordPress"
 
-#: Controller/post-type.php:206
+#: src/Controller/Post_Type.php:235
 msgctxt "date of schedule"
 msgid "M j, Y @ G:i"
 msgstr "j M, Y à\\s G:i"
+
+#~ msgid "Gravity Forms: Form"
+#~ msgstr "Gravity Forms: Formulário"
+
+#~ msgid "There are no forms available."
+#~ msgstr "Não há formulários disponíveis."
+
+#~ msgid "Please select a form"
+#~ msgstr "Por favor selecione um formulário"
