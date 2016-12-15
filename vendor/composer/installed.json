@@ -115,18 +115,18 @@
         "source": {
             "type": "git",
             "url": "https://github.com/htmlburger/carbon-fields.git",
-            "reference": "77132c7139b09c9384529bc07d9ba3fd1d4a04eb"
+            "reference": "3925eb33907fac06cb80e08087bef0453e92c305"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/77132c7139b09c9384529bc07d9ba3fd1d4a04eb",
-            "reference": "77132c7139b09c9384529bc07d9ba3fd1d4a04eb",
+            "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/3925eb33907fac06cb80e08087bef0453e92c305",
+            "reference": "3925eb33907fac06cb80e08087bef0453e92c305",
             "shasum": ""
         },
         "require": {
             "composer/installers": "~1.0"
         },
-        "time": "2016-12-09T07:30:50+00:00",
+        "time": "2016-12-15T14:02:10+00:00",
         "type": "wordpress-plugin",
         "installation-source": "source",
         "autoload": {
