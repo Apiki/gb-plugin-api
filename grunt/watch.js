@@ -5,7 +5,7 @@ module.exports =  {
 	},
 	templates : {
 		files: ['riot/**/*.tag'],
-		tasks: ['riot:dev']
+		tasks: ['riot:dist']
 	},
 	scripts : {
 		files : '<%= concat.dist.src %>',
