@@ -2,9 +2,9 @@
 # This file is distributed under the GPLv2.
 msgid ""
 msgstr ""
-"Project-Id-Version: GB WP API 0.0.1\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/gb-wp-api\n"
-"POT-Creation-Date: 2016-12-14 14:11:39+00:00\n"
+"Project-Id-Version: GB Plugin API 0.0.1\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/gb-plugin-api\n"
+"POT-Creation-Date: 2016-12-15 12:16:08+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -24,55 +24,55 @@ msgstr ""
 "X-Poedit-Bookmarks: \n"
 "X-Textdomain-Support: yes\n"
 
-#: src/Controller/Post_Type.php:154
+#: src/Controller/Post_Type.php:155
 msgid "Date"
 msgstr ""
 
-#: src/Controller/Post_Type.php:227 src/Controller/Post_Type.php:230
+#: src/Controller/Post_Type.php:228 src/Controller/Post_Type.php:231
 msgid "%s updated."
 msgid_plural "%s updated."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Controller/Post_Type.php:228
+#: src/Controller/Post_Type.php:229
 msgid "Custom field updated."
 msgstr ""
 
-#: src/Controller/Post_Type.php:229
+#: src/Controller/Post_Type.php:230
 msgid "Custom field deleted."
 msgstr ""
 
-#: src/Controller/Post_Type.php:231
+#: src/Controller/Post_Type.php:232
 msgid "%s restored to revision from %s"
 msgid_plural "%s restored to revision from %s"
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Controller/Post_Type.php:232
+#: src/Controller/Post_Type.php:233
 msgid "%s published."
 msgid_plural "%s published."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Controller/Post_Type.php:233
+#: src/Controller/Post_Type.php:234
 msgid "%s saved."
 msgid_plural "%s saved."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Controller/Post_Type.php:234
+#: src/Controller/Post_Type.php:235
 msgid "%s submited."
 msgid_plural "%s submited."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Controller/Post_Type.php:235
+#: src/Controller/Post_Type.php:236
 msgid "%s scheduled for: %s%s%s."
 msgid_plural "%s scheduled for: %s%s%s."
 msgstr[0] ""
 msgstr[1] ""
 
-#: src/Controller/Post_Type.php:236
+#: src/Controller/Post_Type.php:237
 msgid "%s draft updated."
 msgid_plural "%s draft updated."
 msgstr[0] ""
@@ -163,7 +163,7 @@ msgstr[0] ""
 msgstr[1] ""
 
 #. Plugin Name of the plugin/theme
-msgid "GB WP API"
+msgid "GB Plugin API"
 msgstr ""
 
 #. Author URI of the plugin/theme
@@ -178,7 +178,7 @@ msgstr ""
 msgid "Apiki WordPress"
 msgstr ""
 
-#: src/Controller/Post_Type.php:235
+#: src/Controller/Post_Type.php:236
 msgctxt "date of schedule"
 msgid "M j, Y @ G:i"
 msgstr ""
