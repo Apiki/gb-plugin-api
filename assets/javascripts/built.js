@@ -2717,4 +2717,6 @@ Object.defineProperty(exports, '__esModule', { value: true });
 	localization.init();
 
 })(jQuery);
-;
+;jQuery(function($) {
+	riot.mount( '*' );
+});
