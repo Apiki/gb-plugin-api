@@ -2,7 +2,7 @@
     "name": "apiki/gb-plugin-api",
     "description": "Ghost Back API.",
     "type": "wordpress-plugin",
-    "license": "GPL",
+    "license": "GPL-2.0",
     "require": {
 		"htmlburger/carbon-fields": "dev-master"
 	},
