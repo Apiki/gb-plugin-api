@@ -8,11 +8,17 @@ if ( ! function_exists( 'add_action' ) ) {
 
 class Core extends Loader
 {
+	/**
+	 * Activate plugin.
+	 */
 	public function activate()
 	{
 		$this->_create_indexes();
 	}
 
+	/**
+	 * Implement scripts for admin WordPress
+	 */
 	public function scripts_admin()
 	{
 		wp_register_script(
@@ -32,6 +38,9 @@ class Core extends Loader
 		);
 	}
 
+	/**
+	 * Implement styles for admin WordPress
+	 */
 	public function styles_admin()
 	{
 		wp_enqueue_style(
@@ -44,8 +53,6 @@ class Core extends Loader
 
 	/**
 	 * Create indexes to better performance of queries
-	 * @since  1.5.7
-	 * @return void
 	 */
 	private function _create_indexes()
 	{
@@ -90,10 +97,10 @@ class Core extends Loader
 
 	/**
 	 * Check if index exists
-	 * @since  1.5.7
-	 * @param  string    $table    The table name with prefix
-	 * @param  string    $key_name The name of index
-	 * @return boolean             Return if index exists
+	 *
+	 * @param string $table the table name with prefix
+	 * @param string $key_name The name of index
+	 * @return boolean return if index exists
 	 */
 	private function _index_exists( $table, $key_name )
 	{
@@ -104,9 +111,9 @@ class Core extends Loader
 
 	/**
 	 * Check if table exists
-	 * @since  1.5.7
-	 * @param  string    $table The table name with prefix
-	 * @return boolean          Return if table exists
+	 *
+	 * @param string $table the table name with prefix
+	 * @return boolean return if table exists
 	 */
 	private function _table_exists( $table )
 	{
