@@ -17,7 +17,7 @@ class Core extends Loader
 	}
 
 	/**
-	 * Implement scripts for admin WordPress
+	 * Implement scripts for admin WordPress.
 	 */
 	public function scripts_admin()
 	{
@@ -39,7 +39,7 @@ class Core extends Loader
 	}
 
 	/**
-	 * Implement styles for admin WordPress
+	 * Implement styles for admin WordPress.
 	 */
 	public function styles_admin()
 	{
@@ -52,7 +52,7 @@ class Core extends Loader
 	}
 
 	/**
-	 * Create indexes to better performance of queries
+	 * Create indexes to better performance of queries.
 	 */
 	private function _create_indexes()
 	{
@@ -96,11 +96,11 @@ class Core extends Loader
 	}
 
 	/**
-	 * Check if index exists
+	 * Check if index exists.
 	 *
-	 * @param string $table the table name with prefix
-	 * @param string $key_name The name of index
-	 * @return boolean return if index exists
+	 * @param string $table the table name with prefix.
+	 * @param string $key_name The name of index.
+	 * @return boolean return if index exists.
 	 */
 	private function _index_exists( $table, $key_name )
 	{
@@ -110,10 +110,10 @@ class Core extends Loader
 	}
 
 	/**
-	 * Check if table exists
+	 * Check if table exists.
 	 *
-	 * @param string $table the table name with prefix
-	 * @return boolean return if table exists
+	 * @param string $table the table name with prefix.
+	 * @return boolean return if table exists.
 	 */
 	private function _table_exists( $table )
 	{
@@ -123,12 +123,11 @@ class Core extends Loader
 	}
 
 	/**
-	 * Create each index
-	 * @since  1.5.7
-	 * @param  string    $table The table name with prefix
-	 * @param  string    $key   The index name
-	 * @param  array     $data  Array of fields of index
-	 * @return void
+	 * Create each index.
+	 *
+	 * @param string $table the table name with prefix.
+	 * @param string $key the index name.
+	 * @param array $data fields of index.
 	 */
 	private function _create_index( $table, $key, $data )
 	{
