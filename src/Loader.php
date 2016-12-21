@@ -88,7 +88,7 @@ abstract class Loader
 	}
 
 	/**
-	 * Enqueue script media wp.media.
+	 * Enqueue script media.
 	 */
 	public function load_wp_media()
 	{
@@ -104,7 +104,7 @@ abstract class Loader
 	}
 
 	/**
-	 * Scripts for admin WordPress
+	 * Scripts for admin WordPress.
 	 */
 	public function scripts_admin()
 	{
@@ -112,7 +112,7 @@ abstract class Loader
 	}
 
 	/**
-	 * Styles for admin WordPress
+	 * Styles for admin WordPress.
 	 */
 	public function styles_admin()
 	{
@@ -120,7 +120,7 @@ abstract class Loader
 	}
 
 	/**
-	 * Get root file per static::SLUG
+	 * Get root file per static::SLUG.
 	 *
 	 * @return string
 	 */
@@ -163,7 +163,7 @@ abstract class Loader
 	}
 
 	/**
-	 * Get filemtime
+	 * Get filemtime.
 	 *
 	 * @param string $path
 	 * @return string
@@ -174,7 +174,7 @@ abstract class Loader
 	}
 
 	/**
-	 * Cretae instance of controllers
+	 * Cretae instance of controllers.
 	 *
 	 * @param string $class class name.
 	 * @param bool $activate used for add capabilities in creating instance.

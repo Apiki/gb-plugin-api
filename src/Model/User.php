@@ -13,7 +13,6 @@ abstract class User
 	/**
 	 * Metas
 	 *
-	 * @since 1.1
 	 * @var array
 	 */
 	public $metas = array();
@@ -21,15 +20,13 @@ abstract class User
 	/**
 	 * ID
 	 *
-	 * @since 1.0
 	 * @var int
 	 */
 	private $ID;
 
 	/**
-	 * Activation Key
+	 * Activation key
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $activation_key;
@@ -37,7 +34,6 @@ abstract class User
 	/**
 	 * Email
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $email;
@@ -45,7 +41,6 @@ abstract class User
 	/**
 	 * Login
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $login;
@@ -53,15 +48,13 @@ abstract class User
 	/**
 	 * Nicename
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $nicename;
 
 	/**
-	 * pass
+	 * Password
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $pass;
@@ -69,47 +62,41 @@ abstract class User
 	/**
 	 * Registered
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $registered;
 
 	/**
-	 * Registered
+	 * Status
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $status;
 
 	/**
-	 * Url
+	 * URL
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $url;
 
 	/**
-	 * Admin Color
+	 * Admin color
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $admin_color;
 
 	/**
-	 * Aim
+	 * Aim account
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $aim;
 
 	/**
-	 * Comment Shortcuts
+	 * Comment shortcuts
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $comment_shortcuts;
@@ -117,47 +104,41 @@ abstract class User
 	/**
 	 * Description
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $description;
 
 	/**
-	 * Display Name
+	 * Display name
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $display_name;
 
 	/**
-	 * First Name
+	 * First name
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $first_name;
 
 	/**
-	 * Last Name
+	 * Last name
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $last_name;
 
 	/**
-	 * Google Plus
+	 * Google Plus account
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $googleplus;
 
 	/**
-	 * Jabber
+	 * Jabber account
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $jabber;
@@ -165,7 +146,6 @@ abstract class User
 	/**
 	 * Level
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $level;
@@ -173,31 +153,27 @@ abstract class User
 	/**
 	 * Nickname
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $nickname;
 
 	/**
-	 * Plugins Last View
+	 * Plugins last view
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $plugins_last_view;
 
 	/**
-	 * Plugins Per Page
+	 * Plugins per page
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $plugins_per_page;
 
 	/**
-	 * Rich Editing
+	 * Rich editing
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $rich_editing;
@@ -205,31 +181,27 @@ abstract class User
 	/**
 	 * Roles
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $roles;
 
 	/**
-	 * Twitter
+	 * Twitter account
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $twitter;
 
 	/**
-	 * Yim
+	 * Yim account
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $yim;
 
 	/**
-	 * Use in fields user has "user_" prefix
+	 * Use in fields user has "user_" prefix.
 	 *
-	 * @since 1.0
 	 * @var array
 	 */
 	private $prefix_user_fields = array(
@@ -245,9 +217,8 @@ abstract class User
 	);
 
 	/**
-	 * Use in fields user has literal names
+	 * Use in fields user has literal names.
 	 *
-	 * @since 1.0
 	 * @var array
 	 */
 	private $literal_user_fields = array(
@@ -271,18 +242,21 @@ abstract class User
 	/**
 	 * Constructor of the class. Instantiate and incializate it.
 	 *
-	 * @since 1.0.0
-	 *
-	 * @param int $ID - The ID of the Customer
-	 * @return null
+	 * @param int $ID the ID of the customer.
 	 */
 	public function __construct( $id = false )
 	{
-		if ( false !== $id ) :
+		if ( false !== $id ) {
 			$this->ID = $id;
-		endif;
+		}
 	}
 
+	/**
+	 * Find users by WP_User_Query.
+	 *
+	 * @param array $args
+	 * @return stdClass object|boolean An object attr list Array<User>, wp_user_query WP_User_Query
+	 */
 	public function find( $args = array() )
 	{
 		$defaults = array(
@@ -292,6 +266,12 @@ abstract class User
 		return $this->parse( Utils::get_user_query( $args, $defaults ) );
 	}
 
+	/**
+	 * Parse WP_User_Query results to Array<User>.
+	 *
+	 * @param array $wp_user_query
+	 * @return stdClass object|boolean An object attr list Array<User>, wp_user_query WP_User_Query.
+	 */
 	public function parse( $wp_user_query )
 	{
 		if ( ! $wp_user_query->results ) {
@@ -312,6 +292,12 @@ abstract class User
 		return $std;
 	}
 
+	/**
+	 * Magic method __get properties
+	 *
+	 * @param string $prop_name
+	 * @return mixed property
+	 */
 	public function __get( $prop_name )
 	{
 		if ( isset( $this->$prop_name ) ) {
@@ -328,14 +314,20 @@ abstract class User
 			return $this->$prop_name;
 		}
 
-		if ( array_key_exists( $prop_name, $this->metas ) ) :
+		if ( array_key_exists( $prop_name, $this->metas ) ) {
 			$this->$prop_name = $this->get_meta_value( $prop_name );
 			return $this->$prop_name;
-		endif;
+		}
 
 		return $this->get_property( $prop_name );
 	}
 
+	/**
+	 * Get meta value by key
+	 *
+	 * @param string $meta_key
+	 * @return mixed $value
+	 */
 	public function get_meta_value( $meta_key )
 	{
 		$args  = $this->metas[ $meta_key ];
@@ -354,15 +346,21 @@ abstract class User
 
 	/**
 	 * Whether user has capability or role.
-	 * @since  1.4.7
-	 * @param  string    $capability capability or role name.
-	 * @return boolean   user has capability or role.
+	 *
+	 * @param string $capability capability or role name.
+	 * @return boolean user has capability or role.
 	 */
 	public function user_can( $capability )
 	{
 		return user_can( $this->ID, $capability );
 	}
 
+	/**
+	 * Get property fallback
+	 *
+	 * @param string $prop_name
+	 * @return mixed property
+	 */
 	protected function get_property( $prop_name )
 	{
 		return $this->$prop_name;
