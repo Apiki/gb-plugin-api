@@ -11,15 +11,13 @@ class Term
 	/**
 	 * Metas
 	 *
-	 * @since 1.1
 	 * @var array
 	 */
 	public $metas = array();
 
 	/**
-	 * Term ID
+	 * Term id
 	 *
-	 * @since 1.0
 	 * @var int
 	 */
 	private $term_id;
@@ -27,31 +25,27 @@ class Term
 	/**
 	 * Name
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $name;
 
 	/**
-	 * Slug
+	 * Slug sanitize term
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $slug;
 
 	/**
-	 * Term Group
+	 * Term group
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $term_group;
 
 	/**
-	 * Term Taxonomy ID
+	 * Term taxonomy id
 	 *
-	 * @since 1.0
 	 * @var int
 	 */
 	private $term_taxonomy_id;
@@ -59,7 +53,6 @@ class Term
 	/**
 	 * Taxonomy
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $taxonomy;
@@ -67,7 +60,6 @@ class Term
 	/**
 	 * Description
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $description;
@@ -75,7 +67,6 @@ class Term
 	/**
 	 * Parent
 	 *
-	 * @since 1.0
 	 * @var int
 	 */
 	private $parent;
@@ -83,7 +74,6 @@ class Term
 	/**
 	 * Count
 	 *
-	 * @since 1.0
 	 * @var int
 	 */
 	private $count;
@@ -91,7 +81,6 @@ class Term
 	/**
 	 * Use in fields has literal names
 	 *
-	 * @since 1.0
 	 * @var array
 	 */
 	private $default_fields = array(
@@ -106,6 +95,14 @@ class Term
 		'count',
 	);
 
+	/**
+	 * Post Type name
+	 *
+	 * @since 1.0
+	 * @var string
+	 */
+	const SLUG = 'category';
+
 	public function __construct( $term = false )
 	{
 		if ( false !== $term ) {
@@ -113,21 +110,21 @@ class Term
 		}
 	}
 
+	/**
+	 * Get permalink of list posts by this term.
+	 *
+	 * @return string URL
+	 */
 	public function get_permalink()
 	{
 		return get_term_link( $this );
 	}
 
-	public function get_child()
-	{
-		return $this->find(
-			array(
-				'parent'     => $this->term_id,
-				'hide_empty' => false,
-			)
-		);
-	}
-
+	/**
+	 * Get terms child.
+	 *
+	 * @return stdClass object|boolean An object attr list Array<Term>, terms WP_Term
+	 */
 	public function get_children()
 	{
 		return $this->find(
@@ -138,6 +135,11 @@ class Term
 		);
 	}
 
+	/**
+	 * Get terms grandchildren.
+	 *
+	 * @return stdClass object|boolean An object attr list Array<Term>, terms WP_Term
+	 */
 	public function get_grandchildren()
 	{
 		return $this->find(
@@ -148,16 +150,21 @@ class Term
 		);
 	}
 
+	/**
+	 * Check this term has children.
+	 *
+	 * @return boolean
+	 */
 	public function has_children()
 	{
 		return (bool) $this->get_children();
 	}
 
-	public function has_child()
-	{
-		return (bool) $this->get_child();
-	}
-
+	/**
+	 * Get top level parent.
+	 *
+	 * @return Term $parent
+	 */
 	public function get_top_level_parent()
 	{
 		$parent = new $this( $this->term_id );
@@ -169,6 +176,11 @@ class Term
 		return $parent;
 	}
 
+	/**
+	 * Get depth this term.
+	 *
+	 * @return int $depth
+	 */
 	public function get_depth()
 	{
 		$parent = $this;
@@ -182,6 +194,11 @@ class Term
 		return $depth;
 	}
 
+	/**
+	 * Get depth limit.
+	 *
+	 * @return int $depth_max
+	 */
 	public function get_depth_limit()
 	{
 		$args = array(
@@ -206,17 +223,29 @@ class Term
 		return $depth_max;
 	}
 
+	/**
+	 * Find terms with get_terms or wp_get_post_terms if has post_id is defined
+	 *
+	 * @param array $args
+	 * @param int $post_id
+	 * @return stdClass object|boolean An object attr list Array<Term>, terms WP_Term
+	 */
 	public function find( $args = array(), $post_id = false )
 	{
-		$defaults = array();
-
 		if ( $post_id ) {
-			return $this->parse( Utils::wp_get_post_terms( $post_id, $this::SLUG, $args, $defaults ) );
+			return $this->parse( Utils::wp_get_post_terms( $post_id, $this::SLUG, $args ) );
 		}
 
-		return $this->parse( Utils::get_terms( $this::SLUG, $args, $defaults ) );
+		return $this->parse( Utils::get_terms( $this::SLUG, $args ) );
 	}
 
+	/**
+	 * Parse terms results to Array<Term>.
+	 *
+	 * @param array $args
+	 * @param int $post_id
+	 * @return stdClass object|boolean An object attr list Array<Term>, terms WP_Term
+	 */
 	public function parse( $terms )
 	{
 		if ( ! $terms ) {
@@ -241,11 +270,24 @@ class Term
 		return $std;
 	}
 
+	/**
+	 * Magic method __set properties.
+	 *
+	 * @param string $prop_name
+	 * @param string $value
+	 * @return mixed property
+	 */
 	public function __set( $prop_name, $value )
 	{
 		return $this->$prop_name = $value;
 	}
 
+	/**
+	 * Magic method __get properties.
+	 *
+	 * @param string $prop_name
+	 * @return mixed property
+	 */
 	public function __get( $prop_name )
 	{
 		if ( isset( $this->$prop_name ) ) {
@@ -265,6 +307,12 @@ class Term
 		return $this->get_property( $prop_name );
 	}
 
+	/**
+	 * Get meta value by key.
+	 *
+	 * @param string $meta_key
+	 * @return mixed $value
+	 */
 	public function get_meta_value( $meta_key )
 	{
 		$args  = $this->metas[ $meta_key ];
@@ -282,10 +330,7 @@ class Term
 	}
 
 	/**
-	 * Update meta manager
-	 *
-	 * @since 1.0
-	 * @return void
+	 * Update meta manager.
 	 */
 	public function update_meta( $meta_key, $value )
 	{
@@ -293,17 +338,21 @@ class Term
 	}
 
 	/**
-	 * Deletes meta manager
-	 *
-	 * @since 1.0
-	 * @return void
+	 * Deletes meta manager.
 	 */
 	public function delete_meta( $meta_key )
 	{
 		delete_term_meta( $this->term_id, $meta_key );
 	}
 
-	public function term_exists( $name, $taxonomy = 'category' )
+	/**
+	 * Check if term exists.
+	 *
+	 * @param string $name
+	 * @param string $taxonomy
+	 * @return array indexes term_id and term_taxonomy_id.
+	 */
+	public function term_exists( $name )
 	{
 		global $wpdb;
 
@@ -320,25 +369,21 @@ class Term
 			LIMIT 1;
 			",
 			sanitize_title( $name ),
-			$taxonomy
+			$this::SLUG
 		);
 
 		return $wpdb->get_row( $query, ARRAY_A );
 	}
 
-	public function create_in_object( $name, $post_id, $args = array() )
-	{
-		$slug = isset( $args['slug'] ) ? $args['slug'] : $name;
-		$term = $this->term_exists( $slug, $this::SLUG );
-
-		if ( $term ) {
-			$this->set_object( $term['term_id'], $post_id );
-			return $term;
-		}
-
-		return $this->insert( $name, $post_id, true, $args );
-	}
-
+	/**
+	 * Insert term.
+	 *
+	 * @param string $name to add or update.
+	 * @param int $post_id
+	 * @param boolean $is_set associate term in post.
+	 * @param array $args
+	 * @return object $term
+	 */
 	public function insert( $name, $post_id, $is_set = false, $args = array() )
 	{
 		$term = wp_insert_term( $name, $this::SLUG, $args );
@@ -354,6 +399,13 @@ class Term
 		return $term;
 	}
 
+	/**
+	 * Associate term in post.
+	 *
+	 * @param int|array $ids
+	 * @param int $post_id
+	 * @return mixed return default wp_set_object_terms.
+	 */
 	public function set_object( $ids, $post_id )
 	{
 		if ( ! is_array( $ids ) ) {
@@ -368,10 +420,10 @@ class Term
 	}
 
 	/**
-	 * Get Property per name
+	 * Get property fallback.
 	 *
-	 * @since 1.0
-	 * @return void
+	 * @param string $prop_name
+	 * @return mixed property
 	 */
 	protected function get_property( $prop_name )
 	{
@@ -379,10 +431,9 @@ class Term
 	}
 
 	/**
-	 * Populate the fields of this class
-	 * @since  1.2.4
-	 * @param mixed    $comment The ID of comment or associative array of fields
-	 * @return void
+	 * Populate the fields of this class.
+	 *
+	 * @param mixed $term The ID of term or associative array of fields.
 	 */
 	private function _populate_fields( $term )
 	{
