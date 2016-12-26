@@ -6,6 +6,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
+use GB\API\Helper\Utils;
 use stdClass;
 
 class Post
