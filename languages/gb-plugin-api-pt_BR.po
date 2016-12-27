@@ -3,9 +3,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Apiki WP API 1.6.0\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/support/plugin/gb-wp-api\n"
-"POT-Creation-Date: 2016-12-14 14:11:39+00:00\n"
-"PO-Revision-Date: 2016-12-14 12:13-0300\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/gb-plugin-api\n"
+"POT-Creation-Date: 2016-12-27 17:50:08+00:00\n"
+"PO-Revision-Date: 2016-12-27 15:51-0300\n"
 "Last-Translator: Elvis Henrique Pereira <elvishp2006@gmail.com>\n"
 "Language-Team: Elvis Henrique Pereira <elvis.pereira@apiki.com>\n"
 "Language: pt_BR\n"
@@ -21,55 +21,55 @@ msgstr ""
 "X-Textdomain-Support: yes\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: src/Controller/Post_Type.php:154
+#: src/Controller/Post_Type.php:156
 msgid "Date"
 msgstr "Data"
 
-#: src/Controller/Post_Type.php:227 src/Controller/Post_Type.php:230
+#: src/Controller/Post_Type.php:229 src/Controller/Post_Type.php:232
 msgid "%s updated."
 msgid_plural "%s updated."
 msgstr[0] "%s atualizada."
 msgstr[1] "%s atualizado."
 
-#: src/Controller/Post_Type.php:228
+#: src/Controller/Post_Type.php:230
 msgid "Custom field updated."
 msgstr "Campo customizado atualizado."
 
-#: src/Controller/Post_Type.php:229
+#: src/Controller/Post_Type.php:231
 msgid "Custom field deleted."
 msgstr "Campo customizado deletado."
 
-#: src/Controller/Post_Type.php:231
+#: src/Controller/Post_Type.php:233
 msgid "%s restored to revision from %s"
 msgid_plural "%s restored to revision from %s"
 msgstr[0] "%s restaurada para revisão de %s"
 msgstr[1] "%s restaurado para revisão de %s"
 
-#: src/Controller/Post_Type.php:232
+#: src/Controller/Post_Type.php:234
 msgid "%s published."
 msgid_plural "%s published."
 msgstr[0] "%s publicada."
 msgstr[1] "%s publicado."
 
-#: src/Controller/Post_Type.php:233
+#: src/Controller/Post_Type.php:235
 msgid "%s saved."
 msgid_plural "%s saved."
 msgstr[0] "%s salva."
 msgstr[1] "%s salvo."
 
-#: src/Controller/Post_Type.php:234
+#: src/Controller/Post_Type.php:236
 msgid "%s submited."
 msgid_plural "%s submited."
 msgstr[0] "%s submetida."
 msgstr[1] "%s submetido."
 
-#: src/Controller/Post_Type.php:235
+#: src/Controller/Post_Type.php:237
 msgid "%s scheduled for: %s%s%s."
 msgid_plural "%s scheduled for: %s%s%s."
 msgstr[0] "%s agendada para: %s%s%s."
 msgstr[1] "%s agendado para: %s%s%s."
 
-#: src/Controller/Post_Type.php:236
+#: src/Controller/Post_Type.php:238
 msgid "%s draft updated."
 msgid_plural "%s draft updated."
 msgstr[0] "Rascunho da %s atualizado."
@@ -160,8 +160,8 @@ msgstr[0] "Nenhuma %s encontrada na Lixeira."
 msgstr[1] "Nenhum %s encontrado na Lixeira."
 
 #. Plugin Name of the plugin/theme
-msgid "GB WP API"
-msgstr "GB WP API"
+msgid "GB Plugin API"
+msgstr "GB Plugin API"
 
 #. Author URI of the plugin/theme
 msgid "http://apiki.com.br"
@@ -177,7 +177,7 @@ msgstr ""
 msgid "Apiki WordPress"
 msgstr "Apiki WordPress"
 
-#: src/Controller/Post_Type.php:235
+#: src/Controller/Post_Type.php:237
 msgctxt "date of schedule"
 msgid "M j, Y @ G:i"
 msgstr "j M, Y à\\s G:i"
