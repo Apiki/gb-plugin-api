@@ -209,7 +209,7 @@ abstract class Post_Type
 			'menu_position' => 5,
 		);
 
-		register_post_type( $this->name, wp_parse_args( $defaults, $this->get_args_register_post_type() ) );
+		register_post_type( $this->name, wp_parse_args( $this->get_args_register_post_type(), $defaults ) );
 	}
 
 	/**

@@ -17,6 +17,7 @@ abstract class Taxonomy
 	public $capability_type = 'term';
 	public $defaults        = array();
 	public $hierarchical    = true;
+	public $is_register     = true;
 
 	public function __construct( $activate = false )
 	{
@@ -46,17 +47,16 @@ abstract class Taxonomy
 
 	public function set_hooks_for_register()
 	{
+		if ( ! $this->is_register ) {
+			return;
+		}
+
 		add_action( 'init', array( &$this, 'register_taxonomy' ), 0 );
 	}
 
 	public function register_taxonomy()
 	{
-		register_taxonomy( $this->name, $this->object_type, $this->get_args_register_taxonomy() );
-	}
-
-	public function get_args_register_taxonomy()
-	{
-		$args = array(
+		$defaults = array(
 			'labels'            => $this->get_labels(),
 			'public'            => true,
 			'show_admin_column' => true,
@@ -64,7 +64,12 @@ abstract class Taxonomy
 			'capabilities'      => $this->get_capabilities(),
 		);
 
-		return $args;
+		register_taxonomy( $this->name, $this->object_type, wp_parse_args( $this->get_args_register_taxonomy(), $defaults ) );
+	}
+
+	public function get_args_register_taxonomy()
+	{
+		return array();
 	}
 
 	public function get_labels( $labels = array() )
