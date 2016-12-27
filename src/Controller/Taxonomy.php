@@ -51,7 +51,7 @@ abstract class Taxonomy
 			return;
 		}
 
-		add_action( 'init', array( &$this, 'register_taxonomy' ), 0 );
+		add_action( 'init', array( &$this, 'register_taxonomy' ) );
 	}
 
 	public function register_taxonomy()
