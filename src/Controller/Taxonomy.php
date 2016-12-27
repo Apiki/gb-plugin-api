@@ -7,6 +7,7 @@ if ( ! function_exists( 'add_action' ) ) {
 }
 
 use GB\API\Helper\L10n;
+use GB\API\Helper\Utils;
 
 abstract class Taxonomy
 {
