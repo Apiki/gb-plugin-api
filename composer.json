@@ -1,0 +1,19 @@
+{
+    "name": "apiki/gb-plugin-api",
+    "description": "Ghost Back API.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0",
+    "require": {
+		"htmlburger/carbon-fields": "dev-master"
+	},
+    "extra": {
+        "installer-paths": {
+            "vendor/{$vendor}/{$name}/": ["type:wordpress-plugin"]
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "GB\\API\\": "src/"
+        }
+    }
+}
