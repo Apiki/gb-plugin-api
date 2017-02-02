@@ -2,5 +2,5 @@ module.exports = {
 	options: {
 		jshintrc : true
 	},
-	beforeconcat : '<%= concat.dist.src %>'
+	beforeconcat : '<%= concat.dev.src %>'
 };
