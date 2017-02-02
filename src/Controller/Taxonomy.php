@@ -17,7 +17,6 @@ abstract class Taxonomy
 	public $capability_type = 'term';
 	public $defaults        = array();
 	public $hierarchical    = true;
-	public $is_register     = true;
 
 	public function __construct( $activate = false )
 	{
@@ -47,10 +46,6 @@ abstract class Taxonomy
 
 	public function set_hooks_for_register()
 	{
-		if ( ! $this->is_register ) {
-			return;
-		}
-
 		add_action( 'init', array( &$this, 'register_taxonomy' ) );
 	}
 

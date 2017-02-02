@@ -114,6 +114,7 @@ class Post
 		'status',
 		'author',
 		'parent',
+		'name',
 	);
 
 	/**

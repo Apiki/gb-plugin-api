@@ -21,6 +21,7 @@ class L10n
 		$defaults = array(
 			'name'                       => $plural,
 			'singular_name'              => $label,
+			'name_admin_bar'             => $label,
 			'menu_name'                  => $plural,
 			'all_items'                  => sprintf( _n( 'All %s', 'All %s', $is_female, Core::SLUG ), $plural_lower_limit ),
 			'edit_item'                  => sprintf( __( 'Edit %s', Core::SLUG ), $label ),
