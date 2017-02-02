@@ -303,9 +303,9 @@ class Post
 	 */
 	public function __get( $prop_name )
 	{
-		if ( isset( $this->$prop_name ) ) :
+		if ( isset( $this->$prop_name ) ) {
 			return $this->$prop_name;
-		endif;
+		}
 
 		if ( in_array( $prop_name, $this->prefix_post_fields, true ) ) {
 			$this->$prop_name = get_post_field( "post_{$prop_name}", $this->ID );
