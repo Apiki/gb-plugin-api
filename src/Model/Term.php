@@ -119,7 +119,13 @@ class Term
 	 */
 	public function get_permalink()
 	{
-		return get_term_link( $this );
+		$value = get_term_link( $this->term_id );
+
+		if ( is_wp_error( $value ) ) {
+			return false;
+		}
+
+		return $value;
 	}
 
 	/**
@@ -317,14 +323,20 @@ class Term
 	 */
 	public function get_meta_value( $meta_key )
 	{
-		$args  = $this->metas[ $meta_key ];
+		$defaults = array(
+			'default'  => '',
+			'type'     => '',
+			'sanitize' => '',
+		);
+
+		$args  = wp_parse_args( $this->metas[ $meta_key ], $defaults );
 		$value = carbon_get_term_meta( $this->term_id, $meta_key, $args['type'] );
 
 		if ( ! $value ) {
-			return @$args['default'];
+			return $args['default'];
 		}
 
-		if ( @$args['sanitize'] && is_callable( $args['sanitize'] ) ) {
+		if ( $args['sanitize'] && is_callable( $args['sanitize'] ) ) {
 			return call_user_func( $args['sanitize'], $value );
 		}
 

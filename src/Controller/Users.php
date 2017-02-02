@@ -25,4 +25,9 @@ abstract class Users
 	{
 		add_action( 'carbon_register_fields', array( &$this, 'register_meta_boxes' ) );
 	}
+
+	public function register_meta_boxes()
+	{
+
+	}
 }

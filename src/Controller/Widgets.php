@@ -6,7 +6,7 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-abstract class Widgets
+abstract class Widget
 {
 	/**
 	 * available widgets

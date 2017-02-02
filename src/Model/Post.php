@@ -114,7 +114,6 @@ class Post
 		'status',
 		'author',
 		'parent',
-		'name',
 	);
 
 	/**
@@ -327,14 +326,20 @@ class Post
 
 	public function get_meta_value( $meta_key )
 	{
-		$args  = $this->metas[ $meta_key ];
-		$value = carbon_get_post_meta( $this->ID, $meta_key, @$args['type'] );
+		$defaults = array(
+			'default'  => '',
+			'type'     => '',
+			'sanitize' => '',
+		);
+
+		$args  = wp_parse_args( $this->metas[ $meta_key ], $defaults );
+		$value = carbon_get_post_meta( $this->ID, $meta_key, $args['type'] );
 
 		if ( ! $value ) {
-			return @$args['default'];
+			return $args['default'];
 		}
 
-		if ( @$args['sanitize'] && is_callable( $args['sanitize'] ) ) {
+		if ( $args['sanitize'] && is_callable( $args['sanitize'] ) ) {
 			return call_user_func( $args['sanitize'], $value );
 		}
 
