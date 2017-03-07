@@ -119,12 +119,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/htmlburger/carbon-fields.git",
-                "reference": "3925eb33907fac06cb80e08087bef0453e92c305"
+                "reference": "72a2a46b01242149eebd243344459b6b055a4673"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/3925eb33907fac06cb80e08087bef0453e92c305",
-                "reference": "3925eb33907fac06cb80e08087bef0453e92c305",
+                "url": "https://api.github.com/repos/htmlburger/carbon-fields/zipball/72a2a46b01242149eebd243344459b6b055a4673",
+                "reference": "72a2a46b01242149eebd243344459b6b055a4673",
                 "shasum": ""
             },
             "require": {
@@ -214,11 +214,16 @@
                     "email": "kaloyanxivanov@gmail.com",
                     "homepage": "http://vilepixels.com/",
                     "role": "Developer"
+                },
+                {
+                    "name": "Atanas Angelov",
+                    "email": "atanas.angelov.dev@gmail.com",
+                    "role": "Developer"
                 }
             ],
             "description": "WordPress developer-friendly custom fields for post types, taxonomy terms, users, comments, widgets, options and more.",
             "homepage": "http://carbonfields.net/",
-            "time": "2016-12-15 14:02:10"
+            "time": "2017-02-15 13:24:11"
         }
     ],
     "packages-dev": [],

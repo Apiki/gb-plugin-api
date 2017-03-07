@@ -141,22 +141,6 @@ class Field {
 	protected $required = false;
 
 	/**
-	 * Mask of this field.
-	 *
-	 * @see set_required()
-	 * @var bool
-	 **/
-	protected $mask = '';
-
-	/**
-	 * jQuery mask options.
-	 *
-	 * @see set_required()
-	 * @var bool
-	 **/
-	protected $mask_options = array();
-
-	/**
 	 * Prefix to be prepended to the field name during load, save, delete and <strong>render</strong>
 	 *
 	 * @var string
@@ -394,7 +378,7 @@ class Field {
 	 * @return mixed
 	 **/
 	public function get_value() {
-		return apply_filters( "carbon_fields_get_{$this->get_base_name()}_value", $this->value, $this );
+		return $this->value;
 	}
 
 	/**
@@ -608,21 +592,8 @@ class Field {
 	 * @param bool $required
 	 * @return object $this
 	 **/
-	public function set_required( $required ) {
+	public function set_required( $required = true ) {
 		$this->required = $required;
-		return $this;
-	}
-
-	/**
-	 * Set a mask format on this field
-	 *
-	 * @param string $mask
-	 * @param array $options
-	 * @return object $this
-	 **/
-	public function set_mask( $mask, $options = array() ) {
-		$this->mask = $mask;
-		$this->mask_options = $options;
 		return $this;
 	}
 
@@ -649,25 +620,6 @@ class Field {
 	 **/
 	public function is_required() {
 		return $this->required;
-	}
-
-	/**
-	 * Return mask format on this field
-	 *
-	 * @return string
-	 **/
-	public function get_mask() {
-		return $this->mask;
-	}
-
-	/**
-	 * Return jQuery mask options
-	 *
-	 * @return array
-	 **/
-	public function get_mask_options()
-	{
-		return $this->mask_options;
 	}
 
 	/**
@@ -759,8 +711,6 @@ class Field {
 			'help_text' => $this->get_help_text(),
 			'context' => $this->get_context(),
 			'required' => $this->is_required(),
-			'mask' => $this->get_mask(),
-			'mask_options' => $this->get_mask_options(),
 			'lazyload' => $this->get_lazyload(),
 			'width' => $this->get_width(),
 			'classes' => $this->get_classes(),
@@ -863,7 +813,6 @@ class Field {
 	public static function admin_hook_scripts() {
 		wp_enqueue_media();
 		wp_enqueue_script( 'carbon-fields', \Carbon_Fields\URL . '/assets/js/fields.js', array( 'carbon-app', 'carbon-containers' ) );
-		wp_enqueue_script( 'carbon-jquery-mask', \Carbon_Fields\URL . '/assets/js/lib/jquery.mask.js' );
 		wp_localize_script( 'carbon-fields', 'crbl10n',
 			array(
 				'title' => __( 'Files', 'carbon-fields' ),
@@ -872,15 +821,14 @@ class Field {
 				'max_num_items_reached' => __( 'Maximum number of items reached (%s items)', 'carbon-fields' ),
 				'max_num_rows_reached' => __( 'Maximum number of rows reached (%s rows)', 'carbon-fields' ),
 				'cannot_create_more_rows' => __( 'Cannot create more than %s rows', 'carbon-fields' ),
-				'enter_name_of_new_sidebar' => __( 'Please enter the name of the new sidebar:', 'carbon-fields' ),
-				'remove_sidebar_confirmation' => __( 'Are you sure you wish to remove this sidebar?', 'carbon-fields' ),
-				'add_sidebar' => __( 'Add Sidebar', 'carbon-fields' ),
 				'complex_no_rows' => __( 'There are no %s yet. Click <a href="#">here</a> to add one.', 'carbon-fields' ),
 				'complex_add_button' => __( 'Add %s', 'carbon-fields' ),
-				'complex_min_num_rows_not_reached' => __( 'Minimum number of rows not reached (%d %s)', 'carbon-fields' ),
+				'complex_min_num_rows_not_reached' => __( 'Minimum number of rows not reached (%1$d %2$s)', 'carbon-fields' ),
 				'message_form_validation_failed' => __( 'Please fill out all fields correctly. ', 'carbon-fields' ),
 				'message_required_field' => __( 'This field is required. ', 'carbon-fields' ),
 				'message_choose_option' => __( 'Please choose an option. ', 'carbon-fields' ),
+
+				'enter_name_of_new_sidebar' => __( 'Please enter the name of the new sidebar:', 'carbon-fields' ),
 			)
 		);
 	}

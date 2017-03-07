@@ -133,9 +133,6 @@ window.carbon = window.carbon || {};
 			this.on('field:rendered', this.toggleError);
 			this.on('field:rendered', this.toggleVisibility);
 
-			// Set jQuery Mask
-			this.on('field:rendered', this.initMask);
-
 			// Initialize conditional logic
 			this.conditionalLogicInit();
 		},
@@ -178,18 +175,6 @@ window.carbon = window.carbon || {};
 			});
 
 			$holder.toggle(visible);
-		},
-
-		initMask: function() {
-			var $field = this.$('input:text');
-			var options = this.model.get('mask_options') || {};
-			var mask = this.model.get('mask');
-
-			if (!mask || !$field.length) {
-				return;
-			}
-
-			$field.mask(mask, options);
 		},
 
 		render: function() {
@@ -944,7 +929,19 @@ window.carbon = window.carbon || {};
 	 *------------------------------------------------------------------------*/
 
 	// Gravity Form MODEL
-	carbon.fields.Model.GravityForm = carbon.fields.Model.Select.extend();
+	carbon.fields.Model.GravityForm = carbon.fields.Model.Select.extend({
+		initialize: function () {
+			carbon.fields.Model.Select.prototype.initialize.apply(this);
+		},
+	});
+
+	// Gravity Form VIEW
+	carbon.fields.View.GravityForm = carbon.fields.View.extend({
+		initialize: function() {
+			carbon.fields.View.prototype.initialize.apply(this);
+			this.listenTo(this.model, 'change:value', this.render);
+		}
+	});
 
 	/*--------------------------------------------------------------------------
 	 * SIDEBAR
@@ -1177,8 +1174,6 @@ window.carbon = window.carbon || {};
 				if ( ! thumbUrl ) {
 					thumbUrl = _this.model.get('default_thumb_url');
 				}
-
-				console.log(mediaAttachment);
 
 				// Update the model
 				this.model.set('file_type', mediaAttachment.type);
@@ -1848,6 +1843,10 @@ window.carbon = window.carbon || {};
 			var groups = this.model.get('value');
 
 			_.each(groups, function(group) {
+				// Set the value defined by the user in PHP land
+				// This code will run only the first time that the groups are created
+				group.collapsed = _this.model.get('collapsed');
+
 				_this.groupsCollection.add(group, {
 					sort: false
 				});
@@ -2200,8 +2199,13 @@ window.carbon = window.carbon || {};
 		toggleCollapse: function(model) {
 			var collapsed = model.get('collapsed');
 
+			if (this.complexModel.isTabbed()) {
+				return;
+			}
+
 			this.$el.toggleClass('collapsed', collapsed);
 		},
+
 		toggleGroupError: function (model) {
 			var hasClass = this.model.get('error');
 
@@ -2411,6 +2415,9 @@ window.carbon = window.carbon || {};
 
 		afterRenderInit: function() {
 			var _this = this;
+
+			// Update collapse state/visibility
+			this.toggleCollapse(this.model);
 
 			// Trigger the add event on the collection, this should initialize the fields rendering
 			this.fieldsCollection.each(function(model) {
