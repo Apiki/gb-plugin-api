@@ -9,6 +9,14 @@ if ( ! function_exists( 'add_action' ) ) {
 class Core extends Loader
 {
 	/**
+	 * Initialize class in __construct Loader
+	 */
+	public function initialize()
+	{
+		add_action( 'activated_plugin', array( &$this, 'force_load_first' ) );
+	}
+
+	/**
 	 * Activate plugin.
 	 */
 	public function activate()
@@ -49,6 +57,23 @@ class Core extends Loader
 			array(),
 			self::filemtime( 'assets/stylesheets/style.css' )
 		);
+	}
+
+	/**
+	 * Force load first
+	 */
+	public function force_load_first()
+	{
+		$path_plugin    = preg_replace( '/(.*)plugins\/(.*)$/', WP_PLUGIN_DIR."/$2", self::get_root_file() );
+		$name_plugin    = plugin_basename( trim( $path_plugin ) );
+		$active_plugins = get_option( 'active_plugins' );
+		$key_plugin     = array_search( $name_plugin, $active_plugins );
+
+		if ( $key_plugin ) {
+			array_splice( $active_plugins, $key_plugin, 1 );
+			array_unshift( $active_plugins, $name_plugin );
+			update_option( 'active_plugins', $active_plugins );
+		}
 	}
 
 	/**
