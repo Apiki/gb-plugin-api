@@ -435,7 +435,9 @@ class Utils
 	{
 		foreach ( (array) $roles as $role ) {
 			$current_role = get_role( $role );
-			array_map( array( &$current_role, 'add_cap' ), $caps );
+			if ( ! empty( $current_role ) ) {
+				array_map( array( &$current_role, 'add_cap' ), $caps );
+			}
 		}
 	}
 
