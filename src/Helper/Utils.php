@@ -247,9 +247,9 @@ class Utils
 		return $term_first->$field;
 	}
 
-	public static function get_terms_field( $post_id, $taxonomy, $field )
+	public static function get_terms_field( $post_id, $taxonomy, $field, $args = array() )
 	{
-		$terms   = get_the_terms( $post_id, $taxonomy );
+		$terms   = wp_get_object_terms( $post_id, $taxonomy, $args );
 		$results = array();
 
 		if ( ! is_array( $terms ) || is_wp_error( $terms ) ) {
