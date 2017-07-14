@@ -329,12 +329,11 @@ class Post
 	{
 		$defaults = array(
 			'default'  => '',
-			'type'     => '',
 			'sanitize' => '',
 		);
 
 		$args  = wp_parse_args( $this->metas[ $meta_key ], $defaults );
-		$value = carbon_get_post_meta( $this->ID, $meta_key, $args['type'] );
+		$value = carbon_get_post_meta( $this->ID, $meta_key );
 
 		if ( ! $value ) {
 			return $args['default'];

@@ -6,11 +6,6 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit68fb45a19aa8795b966c5cbb6eb89405
 {
-    public static $files = array (
-        '74704c95e6224e3a13dba163dbbb87fa' => __DIR__ . '/..' . '/htmlburger/carbon-fields/carbon-fields.php',
-        '1c3af1f7c867149c2eb8dfa733be2e98' => __DIR__ . '/..' . '/htmlburger/carbon-fields/core/functions.php',
-    );
-
     public static $prefixLengthsPsr4 = array (
         'G' => 
         array (

@@ -4,7 +4,7 @@
     "type": "wordpress-plugin",
     "license": "GPL-2.0",
     "require": {
-		"htmlburger/carbon-fields": "dev-master"
+		"htmlburger/carbon-fields": "2.0.1"
 	},
     "extra": {
         "installer-paths": {
