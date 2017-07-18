@@ -7,6 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'GB\\API\\' => array($baseDir . '/src'),
-    'Composer\\Installers\\' => array($vendorDir . '/composer/installers/src/Composer/Installers'),
     'Carbon_Fields\\' => array($vendorDir . '/htmlburger/carbon-fields/core'),
 );

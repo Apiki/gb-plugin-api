@@ -21,6 +21,7 @@ import {
 
 import { getFieldById } from 'fields/selectors';
 import { stopSaga } from 'fields/helpers';
+import { userValidateField } from 'fields/sagas/api';
 
 /**
  * Determine when the action should be handled by the current handler.
@@ -73,7 +74,11 @@ export function* workerValidate(validator, fieldId, debounce, action) {
 	}
 
 	// Perform the validation.
-	const error = yield call(validator, field);
+	let error = yield call(validator, field);
+	const userError = yield call(userValidateField, fieldId, error);
+	if ( ! isUndefined(userError) ) {
+		error = userError;
+	}
 
 	// Update the UI.
 	if (isNull(error)) {
