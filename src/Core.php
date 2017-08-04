@@ -6,6 +6,8 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
+use Carbon_Fields;
+
 class Core extends Loader
 {
 	/**
@@ -14,6 +16,12 @@ class Core extends Loader
 	public function initialize()
 	{
 		add_action( 'activated_plugin', array( &$this, 'force_load_first' ) );
+		add_action( 'after_setup_theme', array( &$this, 'init_carbon_fields' ) );
+	}
+
+	public function init_carbon_fields()
+	{
+		Carbon_Fields\Carbon_Fields::boot();
 	}
 
 	/**
