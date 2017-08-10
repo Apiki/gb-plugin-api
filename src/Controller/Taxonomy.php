@@ -36,7 +36,7 @@ abstract class Taxonomy
 
 	public function set_hooks_fields()
 	{
-		add_action( 'carbon_register_fields', array( &$this, 'register_meta_boxes' ) );
+		add_action( 'carbon_fields_register_fields', array( &$this, 'register_meta_boxes' ) );
 	}
 
 	public function register_meta_boxes()
