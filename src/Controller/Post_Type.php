@@ -80,7 +80,7 @@ abstract class Post_Type
 
 	public function set_hooks_fields()
 	{
-		add_action( 'carbon_register_fields', array( &$this, 'register_meta_boxes' ) );
+		add_action( 'carbon_fields_register_fields', array( &$this, 'register_meta_boxes' ) );
 		add_action( 'rest_api_init', array( &$this, 'rest_register_fields' ) );
 	}
 
