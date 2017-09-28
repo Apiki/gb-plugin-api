@@ -12,97 +12,85 @@ use stdClass;
 class Post
 {
 	/**
-	 * Metas
+	 * The post metas.
 	 *
-	 * @since 1.1
 	 * @var array
 	 */
 	public $metas = array();
 
 	/**
-	 * ID
+	 * The post ID.
 	 *
-	 * @since 1.0
-	 * @var string
+	 * @var integer
 	 */
 	private $ID;
 
 	/**
-	 * Title
+	 * The post title.
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $title;
 
 	/**
-	 * Excerpt
+	 * The post excerpt.
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $excerpt;
 
 	/**
-	 * Content
+	 * The post content.
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $content;
 
 	/**
-	 * Date
+	 * The post date.
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $date;
 
 	/**
-	 * Date GMT
+	 * The post date gmt.
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $date_gmt;
 
 	/**
-	 * Status
+	 * The post status.
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $status;
 
 	/**
-	 * Status
+	 * The post author.
 	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	private $author;
 
 	/**
-	 * menu order
+	 * The post menu order.
 	 *
-	 * @since 1.0
 	 * @var int
 	 */
 	private $menu_order;
 
 	/**
-	 * parent
+	 * The post parent.
 	 *
-	 * @since 1.0
 	 * @var int
 	 */
 	private $parent;
 
 	/**
-	 * Use in fields post has "post_" prefix
+	 * Use in fields post has "post_" prefix.
 	 *
-	 * @since 1.0
 	 * @var array
 	 */
 	private $prefix_post_fields = array(
@@ -118,9 +106,8 @@ class Post
 	);
 
 	/**
-	 * Use in fields post has literal names
+	 * Use in fields post has literal names.
 	 *
-	 * @since 1.0
 	 * @var array
 	 */
 	private $literal_post_fields = array(
@@ -128,17 +115,8 @@ class Post
 	);
 
 	/**
-	 * data
+	 * Post Type name.
 	 *
-	 * @since 1.1
-	 * @var array
-	 */
-	private $data = array();
-
-	/**
-	 * Post Type name
-	 *
-	 * @since 1.0
 	 * @var string
 	 */
 	const POST_TYPE = 'post';
@@ -146,10 +124,8 @@ class Post
 	/**
 	 * Constructor of the class. Instantiate and incializate it.
 	 *
-	 * @since 1.0.0
-	 *
 	 * @param int $ID - The ID of the Customer
-	 * @return null
+	 * @return void
 	 */
 	public function __construct( $id = false )
 	{
@@ -160,11 +136,23 @@ class Post
 		$this->initialize();
 	}
 
+	/**
+	 * Replace the __construct use on child classes.
+	 *
+	 * @return void
+	 */
 	public function initialize()
 	{
 
 	}
 
+	/**
+	 * Return the post excerpt.
+	 *
+	 * @param integer $num_words
+	 * @param string $more
+	 * @return string
+	 */
 	public function get_excerpt( $num_words = 55, $more = '...' )
 	{
 		$text = $this->__get( 'excerpt' );
@@ -176,11 +164,25 @@ class Post
 		return apply_filters( 'the_excerpt', wp_trim_words( $text, $num_words, $more ) );
 	}
 
+	/**
+	 * Echo the post excerpt.
+	 *
+	 * @param integer $num_words
+	 * @param string $more
+	 * @return void
+	 */
 	public function the_excerpt( $num_words = 55, $more = '...' )
 	{
 		echo $this->get_excerpt( $num_words, $more );
 	}
 
+	/**
+	 * Return the post content.
+	 *
+	 * @param integer $num_words
+	 * @param string $more
+	 * @return string
+	 */
 	public function get_content( $num_words = false, $more = '...' )
 	{
 		$content = $this->__get( 'content' );
@@ -192,12 +194,25 @@ class Post
 		return apply_filters( 'the_content', wp_trim_words( $content, $num_words, $more ) );
 	}
 
+	/**
+	 * Echo the post content.
+	 *
+	 * @param integer $num_words
+	 * @param string $more
+	 * @return void
+	 */
 	public function the_content( $num_words = false, $more = '...' )
 	{
 		echo $this->get_content( $num_words, $more );
 	}
 
-	public function get_model_parent( $is_empty_return_current = false )
+	/**
+	 * Return the parent from current model.
+	 *
+	 * @param boolean $is_empty_return_current
+	 * @return Post
+	 */
+	public function get_parent_model( $is_empty_return_current = false )
 	{
 		if ( $is_empty_return_current && ! $this->has_parent() ) {
 			return $this;
@@ -206,52 +221,85 @@ class Post
 		return new $this( $this->__get( 'parent' ) );
 	}
 
-	public function get_children( $is_page = false )
-	{
-		return $this->find(
-			array(
-				'post_parent'    => $this->ID,
-				'post_type'      => ( $is_page ) ? 'page' : $this::POST_TYPE,
-				'posts_per_page' => -1,
-			)
-		);
-	}
-
+	/**
+	 * Ruturn if has parent.
+	 *
+	 * @return boolean
+	 */
 	public function has_parent()
 	{
 		return (bool) $this->__get( 'parent' );
 	}
 
+	/**
+	 * Return if has post thumbnail.
+	 *
+	 * @return boolean
+	 */
 	public function has_post_thumbnail()
 	{
 		return has_post_thumbnail( $this->ID );
 	}
 
+	/**
+	 * Return the thumbnail.
+	 *
+	 * @param string $size
+	 * @return string
+	 */
 	public function get_the_thumbnail( $size = 'thumbnail' )
 	{
 		return get_the_post_thumbnail( $this->ID, $size );
 	}
 
+	/**
+	 * Echo the thumbnail.
+	 *
+	 * @param string $size
+	 * @return void
+	 */
 	public function the_thumbnail( $size = 'thumbnail' )
 	{
 		echo $this->get_the_thumbnail( $size );
 	}
 
+	/**
+	 * Return the thumbnail url.
+	 *
+	 * @param string $size
+	 * @return string
+	 */
 	public function get_the_thumbnail_url( $size = 'thumbnail' )
 	{
 		return Utils::get_thumbnail_url( get_post_thumbnail_id( $this->ID ), $size );
 	}
 
+	/**
+	 * Return the post permalink.
+	 *
+	 * @return string
+	 */
 	public function get_permalink()
 	{
 		return get_permalink( $this->ID );
 	}
 
+	/**
+	 * Echo the post permalink.
+	 *
+	 * @return void
+	 */
 	public function the_permalink()
 	{
 		echo esc_url( apply_filters( 'the_permalink', $this->get_permalink(), $this->ID ) );
 	}
 
+	/**
+	 * Return a list of models.
+	 *
+	 * @param array $args
+	 * @return stdClass
+	 */
 	public function find( $args = array() )
 	{
 		$defaults = array(
@@ -263,6 +311,12 @@ class Post
 		return $this->parse( Utils::get_query( $args, $defaults ) );
 	}
 
+	/**
+	 * Return a model.
+	 *
+	 * @param array $args
+	 * @return Post
+	 */
 	public function find_one( $args = array() )
 	{
 		$defaults = array(
@@ -284,22 +338,20 @@ class Post
 	/**
 	 * Magic function to set the value of the attribute more easily.
 	 *
-	 * @since 1.0
-	 * @param string $prop_name The attribute name
+	 * @param string $prop_name
 	 * @param mixed $value
 	 * @return void
 	 */
 	public function __set( $prop_name, $value )
 	{
-		return $this->$prop_name = $value;
+		$this->$prop_name = $value;
 	}
 
 	/**
 	 * Magic function to retrieve the value of the attribute more easily.
 	 *
-	 * @since 1.0
-	 * @param string $prop_name The attribute name
-	 * @return mixed The attribute value
+	 * @param string $prop_name
+	 * @return mixed
 	 */
 	public function __get( $prop_name )
 	{
@@ -325,6 +377,12 @@ class Post
 		return $this->get_property( $prop_name );
 	}
 
+	/**
+	 * Return the meta value.
+	 *
+	 * @param string $meta_key
+	 * @return mixed
+	 */
 	public function get_meta_value( $meta_key )
 	{
 		$defaults = array(
@@ -346,6 +404,13 @@ class Post
 		return $value;
 	}
 
+	/**
+	 * Update the post meta.
+	 *
+	 * @param string $meta_key
+	 * @param mixed $value
+	 * @return void
+	 */
 	public function update_meta( $meta_key, $value )
 	{
 		if ( ! isset( $this->ID ) ) {
@@ -355,6 +420,12 @@ class Post
 		update_post_meta( $this->ID, $meta_key, $value );
 	}
 
+	/**
+	 * Parse the query.
+	 *
+	 * @param WP_Query $wp_query
+	 * @return stdClass
+	 */
 	public function parse( $wp_query )
 	{
 		if ( ! $wp_query->have_posts() ) {
@@ -375,6 +446,12 @@ class Post
 		return $std;
 	}
 
+	/**
+	 * Transform a post on a model of this class.
+	 *
+	 * @param Post $post
+	 * @return Post
+	 */
 	protected function make_model( $post )
 	{
 		if ( is_object( $post ) ) {
@@ -385,11 +462,11 @@ class Post
 	}
 
 	/**
-	 * Get Property per name
+	 * Return a property of this class.
 	 *
-	 * @since 1.0
-	 * @return void
-	*/
+	 * @param string $prop_name
+	 * @return mixed
+	 */
 	protected function get_property( $prop_name )
 	{
 		return $this->$prop_name;

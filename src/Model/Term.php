@@ -11,35 +11,35 @@ use GB\API\Helper\Utils;
 class Term
 {
 	/**
-	 * Metas
+	 * The term metas.
 	 *
 	 * @var array
 	 */
 	public $metas = array();
 
 	/**
-	 * Term id
+	 * The term id.
 	 *
-	 * @var int
+	 * @var integer
 	 */
 	private $term_id;
 
 	/**
-	 * Name
+	 * The term name.
 	 *
 	 * @var string
 	 */
 	private $name;
 
 	/**
-	 * Slug sanitize term
+	 * The term slug.
 	 *
 	 * @var string
 	 */
 	private $slug;
 
 	/**
-	 * Term group
+	 * The term group.
 	 *
 	 * @var string
 	 */
