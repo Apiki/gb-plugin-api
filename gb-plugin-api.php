@@ -15,9 +15,11 @@ if ( ! function_exists( 'add_action' ) ) {
 	exit( 0 );
 }
 
-use GB\API\Core;
+if ( file_exists( __DIR__ . '/vendor/autoload.php' ) ) {
+	require( __DIR__ . '/vendor/autoload.php' );
+}
 
-include 'vendor/autoload.php';
+use GB\API\Core;
 
 $core = new Core( __FILE__ );
 

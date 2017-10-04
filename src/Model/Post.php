@@ -23,77 +23,77 @@ class Post
 	 *
 	 * @var integer
 	 */
-	private $ID;
+	protected $ID;
 
 	/**
 	 * The post title.
 	 *
 	 * @var string
 	 */
-	private $title;
+	protected $title;
 
 	/**
 	 * The post excerpt.
 	 *
 	 * @var string
 	 */
-	private $excerpt;
+	protected $excerpt;
 
 	/**
 	 * The post content.
 	 *
 	 * @var string
 	 */
-	private $content;
+	protected $content;
 
 	/**
 	 * The post date.
 	 *
 	 * @var string
 	 */
-	private $date;
+	protected $date;
 
 	/**
 	 * The post date gmt.
 	 *
 	 * @var string
 	 */
-	private $date_gmt;
+	protected $date_gmt;
 
 	/**
 	 * The post status.
 	 *
 	 * @var string
 	 */
-	private $status;
+	protected $status;
 
 	/**
 	 * The post author.
 	 *
 	 * @var string
 	 */
-	private $author;
+	protected $author;
 
 	/**
 	 * The post menu order.
 	 *
 	 * @var int
 	 */
-	private $menu_order;
+	protected $menu_order;
 
 	/**
 	 * The post parent.
 	 *
 	 * @var int
 	 */
-	private $parent;
+	protected $parent;
 
 	/**
 	 * Use in fields post has "post_" prefix.
 	 *
 	 * @var array
 	 */
-	private $prefix_post_fields = array(
+	protected $prefix_post_fields = array(
 		'title',
 		'excerpt',
 		'content',
@@ -110,7 +110,7 @@ class Post
 	 *
 	 * @var array
 	 */
-	private $literal_post_fields = array(
+	protected $literal_post_fields = array(
 		'menu_order',
 	);
 
@@ -124,7 +124,7 @@ class Post
 	/**
 	 * Constructor of the class. Instantiate and incializate it.
 	 *
-	 * @param int $ID - The ID of the Customer
+	 * @param int $id
 	 * @return void
 	 */
 	public function __construct( $id = false )

@@ -22,70 +22,70 @@ class Term
 	 *
 	 * @var integer
 	 */
-	private $term_id;
+	protected $term_id;
 
 	/**
 	 * The term name.
 	 *
 	 * @var string
 	 */
-	private $name;
+	protected $name;
 
 	/**
 	 * The term slug.
 	 *
 	 * @var string
 	 */
-	private $slug;
+	protected $slug;
 
 	/**
 	 * The term group.
 	 *
 	 * @var string
 	 */
-	private $term_group;
+	protected $term_group;
 
 	/**
-	 * Term taxonomy id
+	 * The term taxonomy id.
 	 *
 	 * @var int
 	 */
-	private $term_taxonomy_id;
+	protected $term_taxonomy_id;
 
 	/**
-	 * Taxonomy
+	 * The term taxonomy.
 	 *
 	 * @var string
 	 */
-	private $taxonomy;
+	protected $taxonomy;
 
 	/**
-	 * Description
+	 * The term description.
 	 *
 	 * @var string
 	 */
-	private $description;
+	protected $description;
 
 	/**
-	 * Parent
+	 * The term parent.
 	 *
 	 * @var int
 	 */
-	private $parent;
+	protected $parent;
 
 	/**
-	 * Count
+	 * The term count.
 	 *
 	 * @var int
 	 */
-	private $count;
+	protected $count;
 
 	/**
-	 * Use in fields has literal names
+	 * Use in fields has literal names.
 	 *
 	 * @var array
 	 */
-	private $default_fields = array(
+	protected $default_fields = array(
 		'term_id',
 		'name',
 		'slug',
@@ -105,6 +105,12 @@ class Term
 	 */
 	const SLUG = 'category';
 
+	/**
+	 * Constructor of the class. Instantiate and incializate it.
+	 *
+	 * @param mixed $term
+	 * @return void
+	 */
 	public function __construct( $term = false )
 	{
 		if ( false !== $term ) {
@@ -113,9 +119,9 @@ class Term
 	}
 
 	/**
-	 * Get permalink of list posts by this term.
+	 * Return the permalink of list posts by this term.
 	 *
-	 * @return string URL
+	 * @return string
 	 */
 	public function get_permalink()
 	{
@@ -129,9 +135,9 @@ class Term
 	}
 
 	/**
-	 * Get terms child.
+	 * Return the terms child.
 	 *
-	 * @return stdClass object|boolean An object attr list Array<Term>, terms WP_Term
+	 * @return stdClass
 	 */
 	public function get_children()
 	{
@@ -144,9 +150,9 @@ class Term
 	}
 
 	/**
-	 * Get terms grandchildren.
+	 * Return the terms grandchildren.
 	 *
-	 * @return stdClass object|boolean An object attr list Array<Term>, terms WP_Term
+	 * @return stdClass
 	 */
 	public function get_grandchildren()
 	{
@@ -159,7 +165,7 @@ class Term
 	}
 
 	/**
-	 * Check this term has children.
+	 * Ruturn if has children.
 	 *
 	 * @return boolean
 	 */
@@ -169,9 +175,9 @@ class Term
 	}
 
 	/**
-	 * Get top level parent.
+	 * Return the top level parent.
 	 *
-	 * @return Term $parent
+	 * @return Term
 	 */
 	public function get_top_level_parent()
 	{
@@ -185,9 +191,9 @@ class Term
 	}
 
 	/**
-	 * Get depth this term.
+	 * Return the depth of this term.
 	 *
-	 * @return int $depth
+	 * @return int
 	 */
 	public function get_depth()
 	{
@@ -203,9 +209,9 @@ class Term
 	}
 
 	/**
-	 * Get depth limit.
+	 * Return the depth limit.
 	 *
-	 * @return int $depth_max
+	 * @return int
 	 */
 	public function get_depth_limit()
 	{
@@ -232,11 +238,11 @@ class Term
 	}
 
 	/**
-	 * Find terms with get_terms or wp_get_post_terms if has post_id is defined
+	 * Find terms with get_terms or wp_get_post_terms if post_id is defined.
 	 *
 	 * @param array $args
 	 * @param int $post_id
-	 * @return stdClass object|boolean An object attr list Array<Term>, terms WP_Term
+	 * @return stdClass
 	 */
 	public function find( $args = array(), $post_id = false )
 	{
@@ -248,11 +254,10 @@ class Term
 	}
 
 	/**
-	 * Parse terms results to Array<Term>.
+	 * Parse terms results.
 	 *
-	 * @param array $args
-	 * @param int $post_id
-	 * @return stdClass object|boolean An object attr list Array<Term>, terms WP_Term
+	 * @param array $terms
+	 * @return stdClass
 	 */
 	public function parse( $terms )
 	{
@@ -279,22 +284,22 @@ class Term
 	}
 
 	/**
-	 * Magic method __set properties.
+	 * Magic function to set the value of the attribute more easily.
 	 *
 	 * @param string $prop_name
-	 * @param string $value
-	 * @return mixed property
+	 * @param mixed $value
+	 * @return void
 	 */
 	public function __set( $prop_name, $value )
 	{
-		return $this->$prop_name = $value;
+		$this->$prop_name = $value;
 	}
 
 	/**
-	 * Magic method __get properties.
+	 * Magic function to retrieve the value of the attribute more easily.
 	 *
 	 * @param string $prop_name
-	 * @return mixed property
+	 * @return mixed
 	 */
 	public function __get( $prop_name )
 	{
@@ -316,10 +321,10 @@ class Term
 	}
 
 	/**
-	 * Get meta value by key.
+	 * Return the meta value.
 	 *
 	 * @param string $meta_key
-	 * @return mixed $value
+	 * @return mixed
 	 */
 	public function get_meta_value( $meta_key )
 	{
@@ -344,7 +349,11 @@ class Term
 	}
 
 	/**
-	 * Update meta manager.
+	 * Update the term meta.
+	 *
+	 * @param string $meta_key
+	 * @param mixed $value
+	 * @return void
 	 */
 	public function update_meta( $meta_key, $value )
 	{
@@ -352,7 +361,10 @@ class Term
 	}
 
 	/**
-	 * Deletes meta manager.
+	 * Delete the term meta.
+	 *
+	 * @param string $meta_key
+	 * @return void
 	 */
 	public function delete_meta( $meta_key )
 	{
@@ -360,41 +372,41 @@ class Term
 	}
 
 	/**
-	 * Check if term exists.
+	 * Return if term exists.
 	 *
 	 * @param string $name
-	 * @param string $taxonomy
-	 * @return array indexes term_id and term_taxonomy_id.
+	 * @return array
 	 */
 	public function term_exists( $name )
 	{
 		global $wpdb;
 
-		$query = $wpdb->prepare(
-			"
-			SELECT
-				terms.term_id,
-				term_tax.term_taxonomy_id
-			FROM {$wpdb->terms} terms
-			INNER JOIN {$wpdb->term_taxonomy} term_tax
-				ON ( terms.term_id = term_tax.term_id )
-			WHERE terms.slug        = '%s'
-			AND   term_tax.taxonomy = '%s'
-			LIMIT 1;
-			",
-			sanitize_title( $name ),
-			$this::SLUG
+		return $wpdb->get_row(
+			$wpdb->prepare(
+				"
+				SELECT
+					terms.term_id,
+					term_tax.term_taxonomy_id
+				FROM {$wpdb->terms} terms
+				INNER JOIN {$wpdb->term_taxonomy} term_tax
+					ON ( terms.term_id = term_tax.term_id )
+				WHERE terms.slug        = '%s'
+				AND   term_tax.taxonomy = '%s'
+				LIMIT 1;
+				",
+				sanitize_title( $name ),
+				$this::SLUG
+			),
+			ARRAY_A
 		);
-
-		return $wpdb->get_row( $query, ARRAY_A );
 	}
 
 	/**
 	 * Insert term.
 	 *
-	 * @param string $name to add or update.
+	 * @param string $name
 	 * @param int $post_id
-	 * @param boolean $is_set associate term in post.
+	 * @param boolean $is_set
 	 * @param array $args
 	 * @return object $term
 	 */
@@ -434,10 +446,10 @@ class Term
 	}
 
 	/**
-	 * Get property fallback.
+	 * Return property fallback.
 	 *
 	 * @param string $prop_name
-	 * @return mixed property
+	 * @return mixed
 	 */
 	protected function get_property( $prop_name )
 	{
@@ -447,7 +459,8 @@ class Term
 	/**
 	 * Populate the fields of this class.
 	 *
-	 * @param mixed $term The ID of term or associative array of fields.
+	 * @param mixed
+	 * @return void
 	 */
 	private function _populate_fields( $term )
 	{

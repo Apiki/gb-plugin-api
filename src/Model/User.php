@@ -11,200 +11,200 @@ use stdClass;
 abstract class User
 {
 	/**
-	 * Metas
+	 * The user metas.
 	 *
 	 * @var array
 	 */
 	public $metas = array();
 
 	/**
-	 * ID
+	 * The user id.
 	 *
 	 * @var int
 	 */
-	private $ID;
+	protected $ID;
 
 	/**
-	 * Activation key
+	 * The user activation key.
 	 *
 	 * @var string
 	 */
-	private $activation_key;
+	protected $activation_key;
 
 	/**
-	 * Email
+	 * The user email.
 	 *
 	 * @var string
 	 */
-	private $email;
+	protected $email;
 
 	/**
-	 * Login
+	 * The user login.
 	 *
 	 * @var string
 	 */
-	private $login;
+	protected $login;
 
 	/**
-	 * Nicename
+	 * The user nicename.
 	 *
 	 * @var string
 	 */
-	private $nicename;
+	protected $nicename;
 
 	/**
-	 * Password
+	 * The user password.
 	 *
 	 * @var string
 	 */
-	private $pass;
+	protected $pass;
 
 	/**
-	 * Registered
+	 * The user registered.
 	 *
 	 * @var string
 	 */
-	private $registered;
+	protected $registered;
 
 	/**
-	 * Status
+	 * The user status.
 	 *
 	 * @var string
 	 */
-	private $status;
+	protected $status;
 
 	/**
-	 * URL
+	 * The user url.
 	 *
 	 * @var string
 	 */
-	private $url;
+	protected $url;
 
 	/**
-	 * Admin color
+	 * The user admin color.
 	 *
 	 * @var string
 	 */
-	private $admin_color;
+	protected $admin_color;
 
 	/**
-	 * Aim account
+	 * The user aim account.
 	 *
 	 * @var string
 	 */
-	private $aim;
+	protected $aim;
 
 	/**
-	 * Comment shortcuts
+	 * The user comment shortcuts.
 	 *
 	 * @var string
 	 */
-	private $comment_shortcuts;
+	protected $comment_shortcuts;
 
 	/**
 	 * Description
 	 *
 	 * @var string
 	 */
-	private $description;
+	protected $description;
 
 	/**
 	 * Display name
 	 *
 	 * @var string
 	 */
-	private $display_name;
+	protected $display_name;
 
 	/**
 	 * First name
 	 *
 	 * @var string
 	 */
-	private $first_name;
+	protected $first_name;
 
 	/**
 	 * Last name
 	 *
 	 * @var string
 	 */
-	private $last_name;
+	protected $last_name;
 
 	/**
 	 * Google Plus account
 	 *
 	 * @var string
 	 */
-	private $googleplus;
+	protected $googleplus;
 
 	/**
 	 * Jabber account
 	 *
 	 * @var string
 	 */
-	private $jabber;
+	protected $jabber;
 
 	/**
 	 * Level
 	 *
 	 * @var string
 	 */
-	private $level;
+	protected $level;
 
 	/**
 	 * Nickname
 	 *
 	 * @var string
 	 */
-	private $nickname;
+	protected $nickname;
 
 	/**
 	 * Plugins last view
 	 *
 	 * @var string
 	 */
-	private $plugins_last_view;
+	protected $plugins_last_view;
 
 	/**
 	 * Plugins per page
 	 *
 	 * @var string
 	 */
-	private $plugins_per_page;
+	protected $plugins_per_page;
 
 	/**
 	 * Rich editing
 	 *
 	 * @var string
 	 */
-	private $rich_editing;
+	protected $rich_editing;
 
 	/**
 	 * Roles
 	 *
 	 * @var string
 	 */
-	private $roles;
+	protected $roles;
 
 	/**
 	 * Twitter account
 	 *
 	 * @var string
 	 */
-	private $twitter;
+	protected $twitter;
 
 	/**
 	 * Yim account
 	 *
 	 * @var string
 	 */
-	private $yim;
+	protected $yim;
 
 	/**
 	 * Use in fields user has "user_" prefix.
 	 *
 	 * @var array
 	 */
-	private $prefix_user_fields = array(
+	protected $prefix_user_fields = array(
 		'activation_key',
 		'email',
 		'login',
@@ -221,7 +221,7 @@ abstract class User
 	 *
 	 * @var array
 	 */
-	private $literal_user_fields = array(
+	protected $literal_user_fields = array(
 		'admin_color',
 		'aim',
 		'comment_shortcuts',
