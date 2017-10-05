@@ -27,21 +27,19 @@ class Utils
 		global $wpdb;
 
 		if ( empty( $template_page ) ) {
-			return;
+			return 0;
 		}
 
-		$id = $wpdb->get_var(
+		return (int)$wpdb->get_var(
 			$wpdb->prepare(
 				"SELECT post_id
-				FROM $wpdb->postmeta
-					WHERE
-					meta_key = '_wp_page_template'
-					AND meta_value = %s",
+					FROM $wpdb->postmeta
+					WHERE meta_key = '_wp_page_template'
+					  AND meta_value = %s
+				",
 				$template_page
 			)
 		);
-
-		return (int) $id;
 	}
 
 	/**
@@ -50,11 +48,15 @@ class Utils
 	 * Retrieve the permalink from a page that use a specific Template Page.
 	 *
 	 * @param string $template_page The file name of the template to check If the page is inside a folder.
-	 * @return string The permalink for the page that uses the $template_page.
+	 * @return Mixed The permalink for the page that uses the $template_page or false if failure
 	 */
 	public static function get_template_page_permalink( $template_page )
 	{
-		return get_permalink( self::get_template_page_id( $template_page ) );
+		if ( $template_id = self::get_template_page_id( $template_page ) ) {
+			return esc_url( get_permalink( $template_id ) );
+		}
+
+		return false;
 	}
 
 	public static function get_blog_page_permalink()
@@ -146,27 +148,45 @@ class Utils
 	 *
 	 * Use this function for get ip
 	 *
-	 * @return string
+	 * @return Mixed IP address if success or false if failure
 	 */
 	public static function get_ipaddress()
 	{
-		$ip_address = false;
+		$headers = array(
+			'HTTP_CLIENT_IP',
+			'HTTP_X_FORWARDED_FOR',
+			'HTTP_X_FORWARDED',
+			'HTTP_X_CLUSTER_CLIENT_IP',
+			'HTTP_FORWARDED_FOR',
+			'HTTP_FORWARDED',
+			'REMOTE_ADDR',
+		);
 
-		if ( isset( $_SERVER['HTTP_X_FORWARDED_FOR'] ) ) {
-			$ip_address = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		foreach ( $headers as $header ) {
+			if ( ! array_key_exists( $header, $_SERVER ) ) {
+				continue;
+			}
+
+			return self::sanitize_ipaddress( $_SERVER[ $header ] );
 		}
 
-		if ( empty( $ip_address ) ) {
-			$ip_address = $_SERVER['REMOTE_ADDR'];
-		}
-
-		if ( strpos( $ip_address, ',' ) !== false ) {
-			$ip_address = explode( ',', $ip_address );
-			$ip_address = $ip_address[0];
-		}
-
-		return esc_attr( $ip_address );
+		return false;
 	}
+
+    public static function sanitize_ipaddress( $ip )
+    {
+    	if ( self::indexof( $ip, ',' ) ) {
+    		$address = explode( ',', $ip );
+    		$ip      = trim( $address[0] );
+    	}
+
+		return filter_var( $ip, FILTER_VALIDATE_IP );
+    }
+
+    public static function indexof( $string, $search )
+    {
+    	return ( false !== strpos( $string, $search ) );
+    }
 
 	public static function unshift_array( &$list, $insert, $field )
 	{
