@@ -12,6 +12,155 @@ use WP_Query;
 
 class Utils
 {
+	/**
+	 * Sanitize value from custom method
+	 *
+	 * @since 2.0.0
+	 * @param String $name
+	 * @param Mixed $default
+	 * @param Mixed $sanitize the function name for sanitize
+	 * @return Mixed
+	*/
+	public static function request( $type, $name, $default, $sanitize = 'rm_tags' )
+	{
+		$request = filter_input_array( $type, FILTER_SANITIZE_SPECIAL_CHARS );
+
+		if ( ! isset( $request[ $name ] ) || empty( $request[ $name ] ) ) {
+			return $default;
+		}
+
+		return self::sanitize_type( $request[ $name ], $sanitize );
+	}
+
+	/**
+	 * Sanitize value from method POST
+	 *
+	 * @since 2.0.0
+	 * @param String $name
+	 * @param Mixed $default
+	 * @param Mixed $sanitize the function name for sanitize
+	 * @return Mixed
+	*/
+	public static function post( $name, $default = '', $sanitize = 'rm_tags' )
+	{
+		return self::request( INPUT_POST, $name, $default, $sanitize );
+	}
+
+	/**
+	 * Sanitize value from method GET
+	 *
+	 * @since 2.0.0
+	 * @param String $name
+	 * @param Mixed $default
+	 * @param Mixed $sanitize the function name for sanitize
+	 * @return Mixed
+	*/
+	public static function get( $name, $default = '', $sanitize = 'rm_tags' )
+	{
+		return self::request( INPUT_GET, $name, $default, $sanitize );
+	}
+
+	/**
+	 * Sanitize value from method COOKIE
+	 *
+	 * @since 2.0.0
+	 * @param String $name
+	 * @param Mixed $default
+	 * @param Mixed $sanitize the function name for sanitize
+	 * @return Mixed
+	*/
+	public static function cookie( $name, $default = '', $sanitize = 'rm_tags' )
+	{
+		return self::request( INPUT_COOKIE, $name, $default, $sanitize );
+	}
+
+	/**
+	 * Get filtered super global $_SERVER by key
+	 *
+	 * @since 2.0.0
+	 * @param String $key
+	 * @param Mixed $default
+	 * @param Mixed $sanitize the function name for sanitize
+	 * @return Mixed
+	*/
+	public static function server( $key, $default = '', $sanitize = 'rm_tags' )
+	{
+		$value = self::get_value_by( $_SERVER, strtoupper( $key ), $default );
+
+		return self::sanitize_type( $value, $sanitize );
+	}
+
+	/**
+	 * Verify request is valid by nonce
+	 *
+	 * @since 2.0.0
+	 * @param String $name
+	 * @param String $action
+	 * @return false|int
+	*/
+	public static function verify_nonce_post( $name, $action )
+	{
+		return wp_verify_nonce( self::post( $name, false ), $action );
+	}
+
+	/**
+	 * Sanitize requests
+	 *
+	 * @since 2.0.0
+	 * @param String $value
+	 * @param String|Array $type the function name
+	 * @return Mixed
+	*/
+	public static function sanitize_type( $value, $type )
+	{
+		if ( ! is_callable( $type ) ) {
+	    	return ( false === $type ) ? $value : self::rm_tags( $value );
+		}
+
+		if ( is_array( $value ) ) {
+			return array_map( $type, $value );
+		}
+
+		return call_user_func( $type, $value );
+	}
+
+	/**
+	 * Properly strip all HTML tags including script and style
+	 *
+	 * @since 2.0.0
+	 * @param Mixed String|Array $value
+	 * @param Boolean $remove_breaks
+	 * @return Mixed String|Array
+	 */
+	public static function rm_tags( $value, $remove_breaks = false )
+	{
+		if ( empty( $value ) || is_object( $value ) ) {
+			return $value;
+		}
+
+		if ( is_array( $value ) ) {
+			return array_map( __METHOD__, $value );
+		}
+
+	    return wp_strip_all_tags( $value, $remove_breaks );
+	}
+
+	/**
+	 * Get value by array index
+	 *
+	 * @since 2.0.0
+	 * @param Array $args
+	 * @param String|int $index
+	 * @return String
+	 */
+	public static function get_value_by( $args, $index, $default = '' )
+	{
+		if ( ! array_key_exists( $index, $args ) || empty( $args[ $index ] ) ) {
+			return $default;
+		}
+
+		return $args[ $index ];
+	}
 
 	/**
 	 * ID of a template page
@@ -53,7 +202,7 @@ class Utils
 	public static function get_template_page_permalink( $template_page )
 	{
 		if ( $template_id = self::get_template_page_id( $template_page ) ) {
-			return esc_url( get_permalink( $template_id ) );
+			return get_permalink( $template_id );
 		}
 
 		return false;
@@ -103,17 +252,15 @@ class Utils
 	 */
 	public static function get_post_id()
 	{
-		$post_id = null;
-
-		if ( isset( $_GET['post'] ) ) {
-			$post_id = intval( $_GET['post'] );
+		if ( $post_id = self::get( 'post' ) ) {
+			return intval( $post_id );
 		}
 
-		if ( isset( $_POST['post_ID'] ) ) {
-			$post_id = intval( $_POST['post_ID'] );
+		if ( $post_id = self::post( 'post_ID' ) ) {
+			return intval( $post_id );
 		}
 
-		return $post_id;
+		return 0;
 	}
 
 	/**
@@ -144,10 +291,13 @@ class Utils
 	}
 
 	/**
-	 * Get Ip Host Machine Acess
+	 *
+	 * Get Ip Host Machine Access
 	 *
 	 * Use this function for get ip
 	 *
+	 * @param Null
+	 * @since 2.0.0
 	 * @return Mixed IP address if success or false if failure
 	 */
 	public static function get_ipaddress()
@@ -173,6 +323,14 @@ class Utils
 		return false;
 	}
 
+	/**
+	 *
+	 * Sanitize the IP address
+	 *
+	 * @param String $ip
+	 * @since 2.0.0
+	 * @return Mixed string if success of false if failure
+	 */
     public static function sanitize_ipaddress( $ip )
     {
     	if ( self::indexof( $ip, ',' ) ) {
@@ -183,6 +341,15 @@ class Utils
 		return filter_var( $ip, FILTER_VALIDATE_IP );
     }
 
+    /**
+     *
+     * Search for specific value in string
+     *
+     * @since 2.0.0
+     * @param String $string
+     * @param String $search
+     * @return Bool
+     */
     public static function indexof( $string, $search )
     {
     	return ( false !== strpos( $string, $search ) );
@@ -199,13 +366,16 @@ class Utils
 		array_unshift( $list, $insert );
 	}
 
+	/**
+	 * Verify the request is ajax
+	 *
+	 * @since 2.0.0
+	 * @param null
+	 * @return Boolean
+	*/
 	public static function is_request_ajax()
 	{
-		if ( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) ) {
-			$request_ajax = $_SERVER['HTTP_X_REQUESTED_WITH'];
-		}
-
-		return ( ! empty( $request_ajax ) && strtolower( $request_ajax ) == 'xmlhttprequest' );
+		return ( strtolower( self::server( 'HTTP_X_REQUESTED_WITH' ) ) === 'xmlhttprequest' );
 	}
 
 	public static function convert_date_for_sql( $date, $format = 'Y-m-d H:i' )
@@ -312,54 +482,6 @@ class Utils
 	public static function wp_get_post_terms( $post_id, $taxonomy, $args = array(), $defaults = array() )
 	{
 		return wp_get_post_terms( $post_id, $taxonomy, wp_parse_args( $args, $defaults ) );
-	}
-
-	public static function get( $key, $default = '', $sanitize = 'esc_html' )
-	{
-		if ( ! isset( $_GET[ $key ] ) || empty( $_GET[ $key ] ) ) {
-			return $default;
-		}
-
-		if ( is_array( $_GET[ $key ] ) ) {
-			return $_GET[ $key ];
-		}
-
-		return self::sanitize_type( $_GET[ $key ], $sanitize );
-	}
-
-	public static function request( $key, $default = '', $sanitize = 'esc_html' )
-	{
-		if ( ! isset( $_REQUEST[ $key ] ) || empty( $_REQUEST[ $key ] ) ) {
-			return $default;
-		}
-
-		return self::sanitize_type( $_REQUEST[ $key ], $sanitize );
-	}
-
-	public static function post( $key, $default = '', $sanitize = 'esc_html' )
-	{
-		if ( ! isset( $_POST[ $key ] ) || empty( $_POST[ $key ] ) ) {
-			return $default;
-		}
-
-		if ( is_array( $_POST[ $key ] ) ) {
-			return $_POST[ $key ];
-		}
-
-		return self::sanitize_type( $_POST[ $key ], $sanitize );
-	}
-
-	public static function sanitize_type( $value, $name_function )
-	{
-		if ( ! $name_function ) {
-			return $value;
-		}
-
-		if ( ! is_callable( $name_function ) ) {
-			return esc_html( $value );
-		}
-
-		return call_user_func( $name_function, $value );
 	}
 
 	public static function maybe_create_term( $term, $taxonomy, $args = array() )
@@ -505,6 +627,25 @@ class Utils
 		return selected( $selected, $current, false );
 	}
 
+	/**
+	 * 
+	 * Verify the current field input is checked
+	 * 
+	 * @since 2.0.0
+	 * @param Mixed $checked
+	 * @param Mixed $current
+	 * @param Bool $echo
+	 * @return String
+	 */
+	public static function checked( $checked, $current, $echo = false )
+	{
+		if ( is_array( $current ) ) {
+			return in_array( $checked, $current ) ? 'checked="checked"' : '';
+		}
+
+		return checked( $checked, $current, $echo );
+	}
+
 	public static function get_excerpt( $num_words = 55, $more = '...', $post_object = null )
 	{
 		global $post;
@@ -524,6 +665,46 @@ class Utils
 
 	public static function is_localhost()
 	{
-		return ( isset( $_SERVER['SERVER_NAME'] ) && $_SERVER['SERVER_NAME'] == 'localhost' );
+		return ( self::server( 'SERVER_NAME' ) === 'localhost' );
+	}
+
+	/**
+	 * 
+	 * Get the request data
+	 *
+	 * @since 2.0.0
+	 * @param Null
+	 * @return Mixed Object if success of false if failure
+	 */
+	public static function get_json_post_data()
+	{
+		if ( function_exists( 'phpversion' ) && version_compare( phpversion(), '5.6', '>=' ) ) {
+			$post_data = file_get_contents( 'php://input' );
+		} else {
+			global $HTTP_RAW_POST_DATA;
+			$post_data = $HTTP_RAW_POST_DATA;
+		}
+
+		return empty( $post_data ) ? false : json_decode( $post_data );
+	}
+
+	/**
+	 * 
+	 * Get the current user real IP address info via API request
+	 *
+	 * @since 2.0.0
+	 * @param Null
+	 * @return Mixed Object if success of null if failure
+	 */
+	public static function get_ipinfo()
+	{
+		$response = wp_safe_remote_get(
+			'https://ipinfo.io/json',
+			array(
+				'httpversion' => '1.1',
+			)
+		);
+
+		return json_decode( wp_remote_retrieve_body( $response ) );
 	}
 }

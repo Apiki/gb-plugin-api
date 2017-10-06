@@ -129,7 +129,7 @@ class Post
 	 */
 	public function __construct( $id = false )
 	{
-		if ( false !== $id ) {
+		if ( is_numeric( $id ) ) {
 			$this->ID = $id;
 		}
 
