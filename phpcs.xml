@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <ruleset name="WordPress Plugin">
-	<description>Strict WordPress coding standards.</description>
+	<description>Strict WordPress theme coding standards.</description>
 
 	<exclude-pattern>./*\.(css|js|json|map|xml)</exclude-pattern>
 	<exclude-pattern>*/vendor/*</exclude-pattern>
@@ -8,7 +8,16 @@
 
 	<rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
 	<rule ref="Generic.Commenting.Todo"/>
-	<rule ref="WordPress-Extra" />
+	<rule ref="WordPress-Extra">
+		<exclude name="WordPress.CSRF.NonceVerification" />
+		<exclude name="WordPress.PHP.YodaConditions" />
+	</rule>
+
+	<rule ref="WordPress.WP.I18n">
+		<properties>
+			<property name="text_domain" type="array" value="gb-plugin-api"/>
+		</properties>
+	</rule>
 
 	<role ref="Generic.Files.LowercasedFilename">
 		<exclude-pattern>./src/*\.php</exclude-pattern>

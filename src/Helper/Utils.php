@@ -114,7 +114,7 @@ class Utils
 	public static function sanitize_type( $value, $type )
 	{
 		if ( ! is_callable( $type ) ) {
-	    	return ( false === $type ) ? $value : self::rm_tags( $value );
+			return ( false === $type ) ? $value : self::rm_tags( $value );
 		}
 
 		if ( is_array( $value ) ) {
@@ -142,7 +142,7 @@ class Utils
 			return array_map( __METHOD__, $value );
 		}
 
-	    return wp_strip_all_tags( $value, $remove_breaks );
+		return wp_strip_all_tags( $value, $remove_breaks );
 	}
 
 	/**
@@ -179,7 +179,7 @@ class Utils
 			return 0;
 		}
 
-		return (int)$wpdb->get_var(
+		return (int) $wpdb->get_var(
 			$wpdb->prepare(
 				"SELECT post_id
 					FROM $wpdb->postmeta
@@ -201,7 +201,9 @@ class Utils
 	 */
 	public static function get_template_page_permalink( $template_page )
 	{
-		if ( $template_id = self::get_template_page_id( $template_page ) ) {
+		$template_id = self::get_template_page_id( $template_page );
+
+		if ( $template_id ) {
 			return get_permalink( $template_id );
 		}
 
@@ -252,11 +254,15 @@ class Utils
 	 */
 	public static function get_post_id()
 	{
-		if ( $post_id = self::get( 'post' ) ) {
+		$post_id = self::get( 'post' );
+
+		if ( $post_id ) {
 			return intval( $post_id );
 		}
 
-		if ( $post_id = self::post( 'post_ID' ) ) {
+		$post_id = self::post( 'post_ID' );
+
+		if ( $post_id ) {
 			return intval( $post_id );
 		}
 
@@ -331,35 +337,35 @@ class Utils
 	 * @since 2.0.0
 	 * @return Mixed string if success of false if failure
 	 */
-    public static function sanitize_ipaddress( $ip )
-    {
-    	if ( self::indexof( $ip, ',' ) ) {
-    		$address = explode( ',', $ip );
-    		$ip      = trim( $address[0] );
-    	}
+	public static function sanitize_ipaddress( $ip )
+	{
+		if ( self::indexof( $ip, ',' ) ) {
+			$address = explode( ',', $ip );
+			$ip      = trim( $address[0] );
+		}
 
 		return filter_var( $ip, FILTER_VALIDATE_IP );
-    }
+	}
 
-    /**
-     *
-     * Search for specific value in string
-     *
-     * @since 2.0.0
-     * @param String $string
-     * @param String $search
-     * @return Bool
-     */
-    public static function indexof( $string, $search )
-    {
-    	return ( false !== strpos( $string, $search ) );
-    }
+	/**
+	 *
+	 * Search for specific value in string
+	 *
+	 * @since 2.0.0
+	 * @param String $string
+	 * @param String $search
+	 * @return Bool
+	 */
+	public static function indexof( $string, $search )
+	{
+		return ( false !== strpos( $string, $search ) );
+	}
 
 	public static function unshift_array( &$list, $insert, $field )
 	{
 		$values = array_column( $list, $field );
 
-		if ( in_array( $insert[ $field ], $values ) ) {
+		if ( in_array( $insert[ $field ], $values, true ) ) {
 			return;
 		}
 
@@ -522,11 +528,11 @@ class Utils
 
 	public static function error_server_json( $code, $message = 'Generic Message Error', $echo = true )
 	{
-		$response = json_encode(
+		$response = wp_json_encode(
 			array(
-				'status' 	=> 'error',
-				'code'   	=> $code,
-				'message'	=> $message,
+				'status'  => 'error',
+				'code'    => $code,
+				'message' => $message,
 			)
 		);
 
@@ -539,11 +545,11 @@ class Utils
 
 	public static function success_server_json( $code, $message = 'Generic Message Success', $echo = true )
 	{
-		$response = json_encode(
+		$response = wp_json_encode(
 			array(
-				'status' 	=> 'success',
-				'code'   	=> $code,
-				'message'	=> $message,
+				'status'  => 'success',
+				'code'    => $code,
+				'message' => $message,
 			)
 		);
 
@@ -570,7 +576,7 @@ class Utils
 
 	public static function json_encode_html( $value )
 	{
-		return htmlspecialchars( json_encode( $value ), ENT_QUOTES, 'UTF-8' );
+		return wp_json_encode( $value, JSON_HEX_APOS );
 	}
 
 	public static function add_custom_capabilities( $roles, array $caps )
@@ -621,16 +627,16 @@ class Utils
 	public static function selected( $selected, $current )
 	{
 		if ( is_array( $current ) ) {
-			return in_array( $selected, $current ) ? 'selected="selected"' : '';
+			return in_array( $selected, $current, true ) ? 'selected="selected"' : '';
 		}
 
 		return selected( $selected, $current, false );
 	}
 
 	/**
-	 * 
+	 *
 	 * Verify the current field input is checked
-	 * 
+	 *
 	 * @since 2.0.0
 	 * @param Mixed $checked
 	 * @param Mixed $current
@@ -640,7 +646,7 @@ class Utils
 	public static function checked( $checked, $current, $echo = false )
 	{
 		if ( is_array( $current ) ) {
-			return in_array( $checked, $current ) ? 'checked="checked"' : '';
+			return in_array( $checked, $current, true ) ? 'checked="checked"' : '';
 		}
 
 		return checked( $checked, $current, $echo );
@@ -669,7 +675,7 @@ class Utils
 	}
 
 	/**
-	 * 
+	 *
 	 * Get the request data
 	 *
 	 * @since 2.0.0
@@ -689,7 +695,7 @@ class Utils
 	}
 
 	/**
-	 * 
+	 *
 	 * Get the current user real IP address info via API request
 	 *
 	 * @since 2.0.0
