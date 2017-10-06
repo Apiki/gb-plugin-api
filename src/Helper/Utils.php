@@ -413,11 +413,7 @@ class Utils
 
 	public static function get_user_agent()
 	{
-		if ( ! isset( $_SERVER ) ) {
-			return 'none';
-		}
-
-		return $_SERVER['HTTP_USER_AGENT'];
+		return self::server( 'HTTP_USER_AGENT', 'none' );
 	}
 
 	public static function get_thumbnail_url( $thumbnail_id, $size )
