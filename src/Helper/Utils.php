@@ -363,7 +363,7 @@ class Utils
 		);
 
 		$args     = wp_parse_args( $postdata, $defaults );
-		$obj_page = get_page_by_path( $post_name );
+		$obj_page = get_page_by_path( sanitize_title( $post_name ) );
 
 		if ( ! empty( $obj_page ) ) {
 			return $obj_page->ID;
