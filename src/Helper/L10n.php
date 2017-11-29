@@ -36,10 +36,10 @@ class L10n
 			'separate_items_with_commas' => sprintf( __( 'Separate %s with commas', Core::SLUG ), $plural_lower ),
 			'add_or_remove_items'        => sprintf( __( 'Add or remove %s', Core::SLUG ), $plural_lower ),
 			'choose_from_most_used'      => sprintf( _n( 'Choose from the most used %s', 'Choose from the most used %s', $is_female, Core::SLUG ), $plural_lower ),
-			'not_found'                  => sprintf( _n( 'No %s found.', 'No %s found.', $is_female, Core::SLUG ), $plural_lower ),
+			'not_found'                  => sprintf( _n( 'No %s found.', 'No %s found.', $is_female, Core::SLUG ), $label_lower ),
 			'add_new'                    => _n( 'Add New', 'Add New', $is_female, Core::SLUG ),
 			'new_item'                   => sprintf( _n( 'New %s', 'New %s', $is_female, Core::SLUG ), $label ),
-			'not_found_in_trash'         => sprintf( _n( 'No %s found in Trash.', 'No %s found in Trash.', $is_female, Core::SLUG ), $plural_lower ),
+			'not_found_in_trash'         => sprintf( _n( 'No %s found in Trash.', 'No %s found in Trash.', $is_female, Core::SLUG ), $label_lower ),
 		);
 
 		return wp_parse_args( $labels, $defaults );
