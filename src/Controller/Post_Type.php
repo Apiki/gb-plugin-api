@@ -207,6 +207,7 @@ abstract class Post_Type
 			'labels'        => $this->get_labels(),
 			'public'        => true,
 			'menu_position' => 5,
+			'capabilities'  => $this->get_capabilities(),
 		);
 
 		register_post_type( $this->name, wp_parse_args( $this->get_args_register_post_type(), $defaults ) );
